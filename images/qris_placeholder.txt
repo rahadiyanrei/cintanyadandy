@@ -1,0 +1,4 @@
+# QRIS Image Placeholder
+# Replace this file with your actual qris.png file
+# Recommended size: 400x400 pixels
+# Format: PNG with transparent background
