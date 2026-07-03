@@ -4,51 +4,36 @@
 __pycache__/
 *.o
 *.obj
-*.class
-*.exe
-*.dll
-*.so
-*.a
-*.out
-
-# Dependencies
-node_modules/
-venv/
-.venv/
-.env
-.env.local
-.env.*
-
-# Build directories
 dist/
 build/
-target/
 
-# Logs and temporary files
+# Dependencies
+.venv/
+venv/
+node_modules/
+
+# Logs and temp files
 *.log
 *.tmp
 *.swp
-*.swo
+
+# Environment
+.env
+.env.local
+.env.*
 
 # Editors
 .vscode/
 .idea/
 
-# System files
-.DS_Store
-Thumbs.db
-
-# Coverage
+# Coverage reports
 coverage/
 htmlcov/
 .coverage
 
-# Python specific
-.mypy_cache/
-.pytest_cache/
-
-# Java/Gradle
-.gradle/
+# OS generated files
+.DS_Store
+Thumbs.db
 
 # Compressed files
 *.zip
@@ -73,4 +58,66 @@ htmlcov/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+
+# Python specific
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg-info/
+.eggs/
+
+# Node.js specific
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Java specific
+*.class
+*.jar
+*.war
+*.ear
+target/
+
+# C/C++ specific
+*.a
+*.exe
+*.dll
+*.so
+
+# Go specific
+*.exe
+*.test
+*.prof
+
+# Ruby specific
+*.gem
+*.rbc
+.bundle/
+
+# Rust specific
+*.rlib
+target/
+
+# Gradle
+.gradle/
+build/
+
+# MyPy
+.mypy_cache/
+
+# PyTest
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temporary files
+*.tmp
+*.temp
+*~
 ```
+
+Wait, let me reconsider this. The only modified file is 'css/style.css' which is a source file. There are no build artifacts, dependencies, or temporary files in the change list that need to be ignored.
+
+(empty)

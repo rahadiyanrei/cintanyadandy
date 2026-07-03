@@ -4,13 +4,13 @@
 :root {
     /* Color Palette - Premium Navy & Matte Gold */
     --navy: #0F1D3A;
-    --navy-light: #1B2948;
+    --navy-light: #0F1D3A;
     --navy-dark: #0A1428;
     --gold: #C89B3C;
     --gold-light: #D4AF50;
     --gold-dark: #A88834;
     --cream: #F7F6F2;
-    --bright: #f8f6f2;
+    --bright: #F8F6F1;
     --white: #FFFFFF;
     
     /* Typography */
@@ -515,7 +515,7 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 .couple-section {
     padding: 5rem 0;
-    background: var(--navy-light);
+    background: var(--bright);
 }
 
 .couple-container {
@@ -528,14 +528,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .couple-card {
-    background: var(--bright);
+    background: var(--white);
     padding: 3rem 2rem;
     border-radius: 15px;
     text-align: center;
     max-width: 350px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
     transition: var(--transition-smooth);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .couple-card:hover {
@@ -564,7 +564,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .couple-description {
-    color: rgba(247, 246, 242, 0.75);
+    color: rgba(15, 29, 58, 0.75);
     font-size: 0.95rem;
     line-height: 1.8;
 }
@@ -632,10 +632,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .timeline-content {
-    background: var(--bright);
+    background: var(--white);
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
     border-left: 4px solid var(--gold);
 }
 
@@ -657,7 +657,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .timeline-content p {
-    color: rgba(247, 246, 242, 0.75);
+    color: rgba(15, 29, 58, 0.75);
     font-size: 0.95rem;
     line-height: 1.7;
 }
@@ -667,7 +667,7 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 .gallery-section {
     padding: 5rem 0;
-    background: var(--bright);
+    background: var(--navy);
 }
 
 .gallery-grid {
@@ -683,7 +683,8 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 10px;
     cursor: pointer;
     aspect-ratio: 1;
-    background: var(--bright);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .gallery-item img {
@@ -704,7 +705,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(26, 35, 126, 0.5) 100%);
+    background: linear-gradient(135deg, rgba(200, 155, 60, 0.3) 0%, rgba(15, 29, 58, 0.5) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -753,7 +754,7 @@ h1, h2, h3, h4, h5, h6 {
 .lightbox-next {
     position: absolute;
     background: transparent;
-    color: var(--navy);
+    color: var(--cream);
     font-size: 2.5rem;
     cursor: pointer;
     transition: var(--transition-smooth);
@@ -789,7 +790,7 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 .event-section {
     padding: 5rem 0;
-    background: var(--navy-light);
+    background: var(--navy);
 }
 
 .events-container {
@@ -800,13 +801,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .event-card {
-    background: var(--bright);
+    background: rgba(255, 255, 255, 0.06);
     padding: 2.5rem;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     transition: var(--transition-smooth);
-    border-top: 4px solid var(--gold);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
 }
 
 .event-card:hover {
@@ -827,7 +829,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .event-header h3 {
     font-size: 1.8rem;
-    color: var(--navy);
+    color: var(--cream);
 }
 
 .event-details {
@@ -840,17 +842,17 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: 0.75rem;
     margin-bottom: 1rem;
-    color: rgba(247, 246, 242, 0.75);
+    color: rgba(247, 246, 242, 0.9);
 }
 
 .event-details svg {
-    color: var(--navy);
+    color: var(--gold);
     flex-shrink: 0;
 }
 
 .btn-location {
     display: inline-block;
-    background: var(--navy);
+    background: var(--gold);
     color: var(--navy);
     padding: 0.8rem 2rem;
     border-radius: 50px;
@@ -868,16 +870,18 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 .rsvp-section {
     padding: 5rem 0;
-    background: var(--bright);
+    background: var(--navy);
 }
 
 .rsvp-form {
     max-width: 600px;
     margin: 0 auto;
-    background: var(--navy-light);
+    background: rgba(255, 255, 255, 0.06);
     padding: 3rem 2rem;
     border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
 }
 
 .form-group {
@@ -887,7 +891,7 @@ h1, h2, h3, h4, h5, h6 {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--navy);
+    color: var(--cream);
     font-weight: 500;
 }
 
@@ -896,12 +900,13 @@ h1, h2, h3, h4, h5, h6 {
 .form-group textarea {
     width: 100%;
     padding: 0.8rem 1rem;
-    border: 2px solid rgba(212, 175, 55, 0.3);
+    border: 2px solid rgba(200, 155, 60, 0.3);
     border-radius: 8px;
     font-family: var(--font-body);
     font-size: 1rem;
     transition: var(--transition-smooth);
-    background: var(--bright);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--navy);
 }
 
 .form-group input:focus,
@@ -940,7 +945,7 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 .wishes-section {
     padding: 5rem 0;
-    background: var(--navy-light);
+    background: var(--bright);
 }
 
 .wishes-container {
@@ -949,11 +954,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .wish-card {
-    background: var(--bright);
+    background: var(--white);
     padding: 2rem;
     border-radius: 10px;
     margin-bottom: 1.5rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
     border-left: 4px solid var(--gold);
 }
 
@@ -985,11 +990,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .wish-time {
     font-size: 0.85rem;
-    color: rgba(247, 246, 242, 0.75);
+    color: rgba(15, 29, 58, 0.6);
 }
 
 .wish-message {
-    color: rgba(247, 246, 242, 0.75);
+    color: rgba(15, 29, 58, 0.75);
     line-height: 1.8;
     font-style: italic;
 }
@@ -999,7 +1004,7 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 .gift-section {
     padding: 5rem 0;
-    background: var(--bright);
+    background: var(--navy);
 }
 
 .gift-container {
@@ -1010,22 +1015,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gift-card {
-    background: var(--navy-light);
+    background: rgba(255, 255, 255, 0.06);
     padding: 2.5rem;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
 }
 
 .gift-card h3 {
-    color: var(--navy);
+    color: var(--cream);
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
 .qris-image {
-    background: var(--bright);
+    background: var(--white);
     padding: 1.5rem;
     border-radius: 10px;
     margin-bottom: 1rem;
@@ -1041,7 +1047,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gift-card p {
-    color: rgba(247, 246, 242, 0.75);
+    color: rgba(247, 246, 242, 0.9);
     font-size: 0.95rem;
 }
 
@@ -1050,7 +1056,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bank-item {
-    background: var(--bright);
+    background: var(--white);
     padding: 1.5rem;
     border-radius: 10px;
     margin-bottom: 1rem;
@@ -1071,7 +1077,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bank-holder {
-    color: rgba(247, 246, 242, 0.75);
+    color: rgba(15, 29, 58, 0.75);
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
@@ -1080,7 +1086,7 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--navy);
+    background: var(--gold);
     color: var(--navy);
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
@@ -1101,7 +1107,7 @@ h1, h2, h3, h4, h5, h6 {
    Footer
    ======================================== */
 .footer {
-    background: var(--navy);
+    background: var(--bright);
     padding: 4rem 0;
     color: var(--navy);
 }
@@ -1111,22 +1117,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-prayer {
-    font-family: var(--font-heading);
+    font-family: var(--font-serif);
     font-size: clamp(1.2rem, 3vw, 1.5rem);
     font-style: italic;
     margin-bottom: 1rem;
     line-height: 1.8;
-    color: var(--gold);
+    color: var(--navy);
 }
 
 .footer-thanks {
     font-size: 1rem;
-    opacity: 0.9;
+    color: rgba(15, 29, 58, 0.75);
     margin-bottom: 2rem;
 }
 
 .footer-couple {
-    font-family: var(--font-heading);
+    font-family: var(--font-script);
     font-size: clamp(2rem, 5vw, 3rem);
     color: var(--gold);
     margin-bottom: 1rem;
