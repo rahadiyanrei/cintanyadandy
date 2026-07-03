@@ -14,6 +14,9 @@
     
     <!-- Tailwind CSS (CDN for no-build setup) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden { display: none !important; }
+    </style>
     
     <!-- Tailwind Configuration -->
     <script>
@@ -279,7 +282,7 @@
         </section>
 
         <!-- Lightbox -->
-        <div class="lightbox fixed inset-0 bg-navy/95 z-[60] hidden flex items-center justify-center" id="lightbox">
+        <div class="lightbox fixed inset-0 bg-navy/95 z-[60] hidden" id="lightbox">
             <button class="lightbox-close absolute top-6 right-6 text-cream/75 hover:text-gold text-4xl font-serif transition-colors" id="lightboxClose">&times;</button>
             <button class="lightbox-prev absolute left-4 text-cream/75 hover:text-gold text-3xl p-2 transition-colors" id="lightboxPrev">&#10094;</button>
             <button class="lightbox-next absolute right-4 text-cream/75 hover:text-gold text-3xl p-2 transition-colors" id="lightboxNext">&#10095;</button>
