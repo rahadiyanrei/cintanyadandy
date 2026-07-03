@@ -120,7 +120,8 @@ function openLightbox(index) {
     
     currentImageIndex = index;
     lightboxImage.src = images[currentImageIndex];
-    lightbox.classList.add('active');
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
     document.body.style.overflow = 'hidden';
 }
 
@@ -132,7 +133,8 @@ function closeLightbox() {
     
     if (!lightbox) return;
     
-    lightbox.classList.remove('active');
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
     document.body.style.overflow = '';
     
     // Clear image after animation

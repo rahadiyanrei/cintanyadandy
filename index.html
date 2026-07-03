@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Undangan Pernikahan Dandy & Intan - 2 Agustus 2026">
-    <meta name="theme-color" content="#1a237e">
+    <meta name="theme-color" content="#0F1D3A">
     <title>Undangan Pernikahan Dandy & Intan</title>
     
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS (CDN for no-build setup) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -21,35 +22,51 @@
                 extend: {
                     colors: {
                         navy: {
-                            800: '#1e3a8a',
-                            900: '#172554',
-                            950: '#0f172a',
+                            DEFAULT: '#0F1D3A',
+                            light: '#1B2948',
+                            dark: '#0A1428',
                         },
                         gold: {
-                            400: '#fbbf24',
-                            500: '#d4af37',
-                            600: '#b4942e',
-                        }
+                            DEFAULT: '#C89B3C',
+                            light: '#D4AF50',
+                            dark: '#A88834',
+                        },
+                        cream: '#F7F6F2'
                     },
                     fontFamily: {
-                        serif: ['"Cormorant
+                        script: ['"Great Vibes"', 'cursive'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        body: ['"Lato"', 'sans-serif']
+                    },
+                    fontSize: {
+                        'huge': ['5rem', { lineHeight: '1.1' }],
+                        'giant': ['7rem', { lineHeight: '1' }]
+                    },
+                    spacing: {
+                        '128': '32rem',
+                        '144': '36rem'
+                    }
+                }
+            }
+        }
+    </script>
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animation.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body class="font-body bg-navy text-cream overflow-x-hidden">
     <!-- Opening Cover -->
     <div class="opening-cover" id="openingCover">
-        <div class="opening-content">
-            <div class="ornament-top"></div>
-            <p class="opening-subtitle">Kepada Yth.</p>
-            <h1 class="guest-name" id="guestName">Tamu Undangan</h1>
-            <div class="ornament-bottom"></div>
-            <button class="btn-open" id="btnOpen">
+        <div class="opening-content text-center">
+            <div class="ornament-top mb-4"></div>
+            <p class="opening-subtitle text-gold/75 text-sm uppercase tracking-widest mb-2">Kepada Yth.</p>
+            <h1 class="guest-name text-cream text-3xl md:text-4xl font-serif font-light mb-6" id="guestName">Tamu Undangan</h1>
+            <div class="ornament-bottom mb-8"></div>
+            <button class="btn-open mx-auto px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-navy transition-all duration-300 rounded-sm uppercase tracking-widest text-sm flex items-center gap-2" id="btnOpen">
                 <span>Buka Undangan</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M12 5v14M19 12l-7 7-7-7"/>
                 </svg>
             </button>
@@ -64,13 +81,13 @@
     <!-- Main Content (Hidden Initially) -->
     <main class="main-content" id="mainContent">
         <!-- Music Control -->
-        <div class="music-control" id="musicControl">
-            <button class="btn-music" id="btnMusic" aria-label="Toggle Music">
-                <svg class="icon-playing" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="music-control fixed bottom-6 right-6 z-50" id="musicControl">
+            <button class="btn-music w-12 h-12 rounded-full bg-gold/20 backdrop-blur-sm border border-gold/50 text-gold hover:bg-gold hover:text-navy transition-all duration-300 flex items-center justify-center" id="btnMusic" aria-label="Toggle Music">
+                <svg class="icon-playing w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"/>
                     <polygon points="10,8 16,12 10,16 10,8"/>
                 </svg>
-                <svg class="icon-paused" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                <svg class="icon-paused w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"/>
                     <rect x="9" y="8" width="2" height="8"/>
                     <rect x="13" y="8" width="2" height="8"/>
@@ -79,26 +96,45 @@
         </div>
 
         <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <p class="hero-pretitle reveal">The Wedding of</p>
-                <h1 class="hero-title reveal">
-                    <span class="groom-name">Dandy</span>
-                    <span class="ampersand">&</span>
-                    <span class="bride-name">Intan</span>
+        <section class="hero relative h-screen w-full overflow-hidden" id="hero">
+            <!-- Background Image -->
+            <div class="hero-bg absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.hostinger.com/c6e739c3-cf5d-4d70-ab6c-71cdd6f2aa54.png');"></div>
+            <!-- Navy Overlay (60-70% opacity) -->
+            <div class="hero-overlay absolute inset-0 bg-navy/70"></div>
+            
+            <!-- Hero Content - Vertically Centered -->
+            <div class="hero-content relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+                <!-- Small Text: THE WEDDING OF -->
+                <p class="hero-pretitle reveal text-gold/75 text-xs md:text-sm uppercase tracking-[0.3em] mb-6 md:mb-8">The Wedding of</p>
+                
+                <!-- Large Couple Names - Dominating -->
+                <h1 class="hero-title reveal font-script text-6xl md:text-8xl lg:text-9xl text-cream font-normal leading-tight mb-4 md:mb-6">
+                    <span class="groom-name block">Dandy</span>
+                    <span class="ampersand text-gold text-4xl md:text-6xl lg:text-7xl block my-2 md:my-4">&</span>
+                    <span class="bride-name block">Intan</span>
                 </h1>
-                <p class="hero-date reveal">2 Agustus 2026</p>
-                <div class="quran-verse reveal">
-                    <p class="verse-arabic">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
-                    <p class="verse-translation">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang."</p>
-                    <p class="verse-source">(QS. Ar-Rum: 21)</p>
-                </div>
+                
+                <!-- Small Decorative Divider -->
+                <div class="hero-divider reveal w-24 md:w-32 h-px bg-gradient-to-r from-transparent via-gold to-transparent my-4 md:my-6"></div>
+                
+                <!-- Wedding Date -->
+                <p class="hero-date reveal text-cream/90 text-lg md:text-xl font-serif tracking-wide mb-6 md:mb-8">2 Agustus 2026</p>
+                
+                <!-- Guest Name (from URL) -->
+                <p class="hero-guest reveal text-gold/75 text-sm md:text-base font-body mb-4">Kepada Yth.<br><span id="heroGuestName" class="text-cream font-serif text-lg md:text-xl">Tamu Undangan</span></p>
+                
+                <!-- Invitation Text -->
+                <p class="hero-invitation reveal text-cream/75 text-xs md:text-sm font-body tracking-wide max-w-md mx-auto">
+                    Kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami
+                </p>
             </div>
-            <div class="scroll-indicator reveal">
-                <span>Scroll Down</span>
-                <div class="scroll-arrow"></div>
+            
+            <!-- Elegant Scroll Indicator -->
+            <div class="scroll-indicator reveal absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+                <span class="text-cream/50 text-xs uppercase tracking-widest">Scroll Down</span>
+                <div class="scroll-arrow w-6 h-10 border-2 border-cream/30 rounded-full flex justify-center pt-2">
+                    <div class="w-1 h-3 bg-gold/70 rounded-full animate-bounce"></div>
+                </div>
             </div>
         </section>
 
@@ -215,40 +251,40 @@
         </section>
 
         <!-- Gallery Section -->
-        <section class="gallery-section" id="gallery">
-            <div class="container">
-                <h2 class="section-title reveal">Galeri Foto</h2>
-                <p class="section-subtitle reveal">Momen-momen indah yang abadi</p>
-                <div class="gallery-grid" id="galleryGrid">
-                    <div class="gallery-item reveal" data-index="0">
-                        <img src="images/gallery/photo1.jpg" alt="Foto Pre Wedding 1" loading="lazy">
+        <section class="gallery-section py-16 md:py-24 bg-navy-light" id="gallery">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title reveal text-center font-script text-5xl md:text-6xl text-gold mb-4">Galeri Foto</h2>
+                <p class="section-subtitle reveal text-center text-cream/75 text-sm md:text-base mb-12 max-w-2xl mx-auto">Momen-momen indah yang abadi</p>
+                <div class="gallery-grid grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4" id="galleryGrid">
+                    <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="0">
+                        <img src="https://images.hostinger.com/f8e7ea9c-25d9-405b-900c-68019e469b4f.png" alt="Foto Pre Wedding 1" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="gallery-item reveal" data-index="1">
-                        <img src="images/gallery/photo2.jpg" alt="Foto Pre Wedding 2" loading="lazy">
+                    <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="1">
+                        <img src="https://images.hostinger.com/da680e66-be07-4ec1-8808-38d2a2d1c39b.png" alt="Foto Pre Wedding 2" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="gallery-item reveal" data-index="2">
-                        <img src="images/gallery/photo3.jpg" alt="Foto Pre Wedding 3" loading="lazy">
+                    <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="2">
+                        <img src="https://images.hostinger.com/2b8e6a09-f748-4284-9b9d-dc1d6c79947c.png" alt="Foto Pre Wedding 3" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="gallery-item reveal" data-index="3">
-                        <img src="images/gallery/photo4.jpg" alt="Foto Pre Wedding 4" loading="lazy">
+                    <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="3">
+                        <img src="https://images.hostinger.com/df372b7c-1c10-400d-a02c-7240be176c3b.png" alt="Foto Pre Wedding 4" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="gallery-item reveal" data-index="4">
-                        <img src="images/gallery/photo5.jpg" alt="Foto Pre Wedding 5" loading="lazy">
+                    <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="4">
+                        <img src="https://images.hostinger.com/93f77142-0318-449c-a78b-16fe61552ee4.png" alt="Foto Pre Wedding 5" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="gallery-item reveal" data-index="5">
-                        <img src="images/gallery/photo6.jpg" alt="Foto Pre Wedding 6" loading="lazy">
+                    <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="5">
+                        <img src="https://images.unsplash.com/photo-1567486358627-518883d6e486?w=1216&h=896&fit=crop&q=80" alt="Foto Pre Wedding 6" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Lightbox -->
-        <div class="lightbox" id="lightbox">
-            <button class="lightbox-close" id="lightboxClose">&times;</button>
-            <button class="lightbox-prev" id="lightboxPrev">&#10094;</button>
-            <button class="lightbox-next" id="lightboxNext">&#10095;</button>
-            <div class="lightbox-content">
-                <img src="" alt="Gallery Image" id="lightboxImage">
+        <div class="lightbox fixed inset-0 bg-navy/95 z-[60] hidden flex items-center justify-center" id="lightbox">
+            <button class="lightbox-close absolute top-6 right-6 text-cream/75 hover:text-gold text-4xl font-serif transition-colors" id="lightboxClose">&times;</button>
+            <button class="lightbox-prev absolute left-4 text-cream/75 hover:text-gold text-3xl p-2 transition-colors" id="lightboxPrev">&#10094;</button>
+            <button class="lightbox-next absolute right-4 text-cream/75 hover:text-gold text-3xl p-2 transition-colors" id="lightboxNext">&#10095;</button>
+            <div class="lightbox-content max-w-4xl max-h-[80vh] px-4">
+                <img src="" alt="Gallery Image" id="lightboxImage" class="max-w-full max-h-[80vh] object-contain">
             </div>
         </div>
 
