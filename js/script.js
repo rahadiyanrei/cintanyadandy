@@ -9,25 +9,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Wedding Invitation Website Loaded');
     
-    // Initialize all modules
-    initGuestName();
+    // Initialize guest name from URL
+    if (typeof getGuestNameFromURL === 'function') {
+        getGuestNameFromURL();
+    }
+    
+    // Initialize opening cover
     initOpeningCover();
 });
-
-/**
- * Initialize guest name from URL parameter
- */
-function initGuestName() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestName = urlParams.get('to');
-    
-    if (guestName) {
-        const guestNameElement = document.getElementById('guestName');
-        if (guestNameElement) {
-            guestNameElement.textContent = decodeURIComponent(guestName);
-        }
-    }
-}
 
 /**
  * Initialize opening cover functionality

@@ -6,6 +6,31 @@
 'use strict';
 
 /**
+ * Get guest name from URL parameter
+ */
+function getGuestNameFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('to');
+    
+    if (guestName) {
+        // Decode and display the guest name
+        const decodedName = decodeURIComponent(guestName);
+        
+        // Update opening cover
+        const openingGuestName = document.getElementById('guestName');
+        if (openingGuestName) {
+            openingGuestName.textContent = decodedName;
+        }
+        
+        // Update hero section
+        const heroGuestName = document.getElementById('heroGuestName');
+        if (heroGuestName) {
+            heroGuestName.textContent = decodedName;
+        }
+    }
+}
+
+/**
  * Initialize RSVP form handling
  */
 function initRSVPForm() {
@@ -114,12 +139,14 @@ function showSuccessMessage() {
             background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             padding: 1rem 2rem;
-            border-radius: 50px;
+            border-radius: 2px;
             box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
             z-index: 10001;
             animation: slideDown 0.5s ease;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
         ">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                 <polyline points="22 4 12 14.01 9 11.01"/>
             </svg>
@@ -163,12 +190,14 @@ function showError(message) {
             background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
             color: white;
             padding: 1rem 2rem;
-            border-radius: 50px;
+            border-radius: 2px;
             box-shadow: 0 10px 30px rgba(244, 67, 54, 0.3);
             z-index: 10001;
             animation: slideDown 0.5s ease;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
         ">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;">
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="12" y1="8" x2="12" y2="12"/>
                 <line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -216,7 +245,7 @@ function initCopyButtons() {
             // Copy to clipboard
             navigator.clipboard.writeText(accountNumber).then(() => {
                 // Show success feedback
-                const originalText = this.innerHTML;
+                const originalHTML = this.innerHTML;
                 this.innerHTML = `
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="20 6 9 17 4 12"/>
@@ -226,7 +255,7 @@ function initCopyButtons() {
                 
                 // Reset after 2 seconds
                 setTimeout(() => {
-                    this.innerHTML = originalText;
+                    this.innerHTML = originalHTML;
                 }, 2000);
             }).catch(err => {
                 console.error('Failed to copy:', err);
@@ -238,5 +267,5 @@ function initCopyButtons() {
 
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { initRSVPForm, initCopyButtons };
+    module.exports = { getGuestNameFromURL, initRSVPForm, initCopyButtons };
 }
