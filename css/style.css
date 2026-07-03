@@ -724,7 +724,8 @@ h1, h2, h3, h4, h5, h6 {
     transition: opacity 0.3s ease;
 }
 
-.lightbox.active {
+.lightbox.active,
+.lightbox.flex {
     display: flex;
     opacity: 1;
 }
@@ -1025,8 +1026,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .qris-image img {
-    max-width: 200px;
+    max-width: 280px;
+    width: 100%;
+    height: auto;
     margin: 0 auto;
+    display: block;
 }
 
 .gift-card p {
@@ -1120,8 +1124,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
 }
 
-.footer-couple span {
-    margin: 0 0.5rem;
+.footer-divider {
+    width: 6rem;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+    margin: 1.5rem auto;
 }
 
 .footer-date {
