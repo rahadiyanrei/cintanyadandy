@@ -1,1 +1,40 @@
-(css/style.css, index.html are source code files, no build artifacts, dependencies, or temp files detected in changes - according to rule 6, output nothing)
+```
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+.coverage
+htmlcov/
+.mypy_cache/
+.pytest_cache/
+.venv/
+venv/
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Original rules preserved
+*.log
+```
