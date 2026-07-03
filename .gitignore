@@ -1,0 +1,46 @@
+```gitignore
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+build/
+*.min.css
+*.min.js
+*.bundle.js
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+htmlcov/
+.coverage.*
+.pytest_cache/
+.mypy_cache/
+
+# Coverage reports
+coverage/
+```

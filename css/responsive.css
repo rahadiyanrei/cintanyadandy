@@ -1,0 +1,363 @@
+/* ========================================
+   Responsive Design - Mobile First
+   ======================================== */
+
+/* ========================================
+   Tablet (768px and up)
+   ======================================== */
+@media screen and (min-width: 768px) {
+    .container {
+        padding: 0 2rem;
+    }
+    
+    .countdown-container {
+        gap: 1.5rem;
+    }
+    
+    .countdown-item {
+        min-width: 120px;
+        padding: 2rem;
+    }
+    
+    .couple-container {
+        gap: 3rem;
+    }
+    
+    .couple-card {
+        max-width: 400px;
+    }
+    
+    .timeline::before {
+        left: 50%;
+    }
+    
+    .timeline-item:nth-child(odd) {
+        text-align: right;
+        padding-right: 4rem;
+    }
+    
+    .timeline-item:nth-child(even) {
+        text-align: left;
+        padding-left: 4rem;
+        margin-left: 50%;
+    }
+    
+    .events-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gift-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ========================================
+   Desktop (1024px and up)
+   ======================================== */
+@media screen and (min-width: 1024px) {
+    html {
+        font-size: 18px;
+    }
+    
+    .container {
+        max-width: 1140px;
+        padding: 0 3rem;
+    }
+    
+    .hero {
+        min-height: 700px;
+    }
+    
+    .section-title {
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-subtitle {
+        margin-bottom: 4rem;
+    }
+    
+    .countdown-section {
+        padding: 6rem 0;
+    }
+    
+    .couple-section,
+    .timeline-section,
+    .gallery-section,
+    .event-section,
+    .rsvp-section,
+    .wishes-section,
+    .gift-section {
+        padding: 6rem 0;
+    }
+    
+    .footer {
+        padding: 5rem 0;
+    }
+    
+    /* Enhanced hover effects for desktop */
+    .couple-card:hover .couple-icon {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .event-card:hover .event-header svg {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
+}
+
+/* ========================================
+   Large Desktop (1440px and up)
+   ======================================== */
+@media screen and (min-width: 1440px) {
+    html {
+        font-size: 20px;
+    }
+    
+    .container {
+        max-width: 1320px;
+    }
+    
+    .hero {
+        min-height: 800px;
+    }
+}
+
+/* ========================================
+   Small Mobile (max-width: 480px)
+   ======================================== */
+@media screen and (max-width: 480px) {
+    .opening-content {
+        padding: 1.5rem;
+    }
+    
+    .btn-open {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero-content {
+        padding: 1.5rem;
+    }
+    
+    .quran-verse {
+        padding: 1.5rem;
+    }
+    
+    .countdown-container {
+        gap: 0.5rem;
+    }
+    
+    .countdown-item {
+        min-width: 70px;
+        padding: 1rem 0.5rem;
+    }
+    
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.65rem;
+    }
+    
+    .countdown-separator {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .couple-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .couple-divider {
+        font-size: 2.5rem;
+    }
+    
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        text-align: left;
+        padding-left: 50px;
+        margin-left: 0;
+    }
+    
+    .timeline-dot {
+        left: 20px;
+    }
+    
+    .timeline-content {
+        border-left: 4px solid var(--color-gold);
+        border-top: none;
+    }
+    
+    .events-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .gift-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .music-control {
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .btn-music {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .lightbox-prev {
+        left: 1rem;
+    }
+    
+    .lightbox-next {
+        right: 1rem;
+    }
+    
+    .lightbox-close {
+        top: 0.5rem;
+        right: 1rem;
+        font-size: 2rem;
+    }
+    
+    .rsvp-form {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ========================================
+   Landscape orientation on mobile
+   ======================================== */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 4rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .quran-verse {
+        max-width: 500px;
+    }
+}
+
+/* ========================================
+   Touch device optimizations
+   ======================================== */
+@media (hover: none) and (pointer: coarse) {
+    .btn-open:hover {
+        transform: none;
+    }
+    
+    .couple-card:hover {
+        transform: none;
+    }
+    
+    .event-card:hover {
+        transform: none;
+    }
+    
+    .btn-location:hover {
+        transform: none;
+    }
+    
+    .btn-submit:hover {
+        transform: none;
+    }
+}
+
+/* ========================================
+   High DPI displays
+   ======================================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-overlay {
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(212,175,55,0.15)"/></svg>');
+        background-size: 50px 50px;
+    }
+}
+
+/* ========================================
+   Dark mode support (optional enhancement)
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-cream: #1a1a2e;
+        --color-white: #16213e;
+        --color-text-dark: #eaeaea;
+        --color-text-light: #b0b0b0;
+    }
+    
+    .couple-card,
+    .event-card,
+    .wish-card,
+    .gift-card,
+    .rsvp-form,
+    .timeline-content {
+        background: var(--color-white);
+    }
+    
+    .countdown-section,
+    .gallery-section,
+    .rsvp-section,
+    .gift-section {
+        background: var(--color-cream);
+    }
+    
+    .couple-section,
+    .event-section,
+    .wishes-section {
+        background: var(--color-cream);
+    }
+}
+
+/* ========================================
+   Accessibility improvements
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Focus visible styles for better accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-navy);
+    color: var(--color-white);
+    padding: 8px;
+    z-index: 100000;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
