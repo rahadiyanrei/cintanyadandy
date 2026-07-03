@@ -811,11 +811,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .event-header {
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .event-header svg {
     color: var(--color-gold);
     margin-bottom: 1rem;
+    display: inline-block;
 }
 
 .event-header h3 {
@@ -1109,6 +1111,7 @@ h1, h2, h3, h4, h5, h6 {
     font-style: italic;
     margin-bottom: 1rem;
     line-height: 1.8;
+    color: var(--color-gold);
 }
 
 .footer-thanks {
