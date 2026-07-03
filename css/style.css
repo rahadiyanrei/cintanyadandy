@@ -479,7 +479,7 @@ h1, h2, h3, h4, h5, h6 {
 .countdown-item {
     text-align: center;
     padding: 1.5rem;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    background: var(--navy);
     border-radius: 10px;
     min-width: 100px;
     box-shadow: 0 10px 30px rgba(26, 35, 126, 0.2);
@@ -581,7 +581,7 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 .timeline-section {
     padding: 5rem 0;
-    background: linear-gradient(180deg, var(--bright) 0%, var(--navy-light) 100%);
+    background: var(--bright);
 }
 
 .timeline {
@@ -683,7 +683,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 10px;
     cursor: pointer;
     aspect-ratio: 1;
-    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
+    background: var(--bright);
 }
 
 .gallery-item img {
@@ -850,7 +850,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-location {
     display: inline-block;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    background: var(--navy);
     color: var(--navy);
     padding: 0.8rem 2rem;
     border-radius: 50px;
@@ -968,7 +968,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    background: var(--navy);
     color: var(--gold);
     display: flex;
     align-items: center;
@@ -1101,7 +1101,7 @@ h1, h2, h3, h4, h5, h6 {
    Footer
    ======================================== */
 .footer {
-    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+    background: var(--navy);
     padding: 4rem 0;
     color: var(--navy);
 }
