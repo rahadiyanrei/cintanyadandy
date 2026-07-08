@@ -43,7 +43,15 @@ function initOpeningCover() {
         }, 300);
         
         // Play music
-        playMusic();
+        // playMusic();
+        if (typeof window.initMusicControl === 'function') {
+            window.initMusicControl();
+        }
+        
+        // Play music immediately following the user gesture
+        if (typeof window.playMusic === 'function') {
+            window.playMusic();
+        }
         
         // Store in session that invitation is opened
         sessionStorage.setItem('invitationOpened', 'true');

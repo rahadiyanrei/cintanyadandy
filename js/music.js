@@ -85,6 +85,7 @@ function pauseMusic() {
 
 /**
  * Update music button icon based on playing state
+ * FIXED: Uses classList to play nice with Tailwind's .hidden class
  */
 function updateMusicIcon() {
     const btnMusic = document.getElementById('btnMusic');
@@ -96,12 +97,12 @@ function updateMusicIcon() {
     if (!iconPlaying || !iconPaused) return;
     
     if (isPlaying) {
-        iconPlaying.style.display = 'block';
-        iconPaused.style.display = 'none';
+        iconPlaying.classList.remove('hidden');
+        iconPaused.classList.add('hidden');
         btnMusic.style.animation = 'pulse 2s ease-in-out infinite';
     } else {
-        iconPlaying.style.display = 'none';
-        iconPaused.style.display = 'block';
+        iconPlaying.classList.add('hidden');
+        iconPaused.classList.remove('hidden');
         btnMusic.style.animation = 'none';
     }
 }
