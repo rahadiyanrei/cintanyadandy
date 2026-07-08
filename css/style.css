@@ -2,6 +2,8 @@
    CSS Variables & Root Styles
    ======================================== */
 :root {
+    color-scheme: light only;
+
     /* Color Palette - Premium Navy & Matte Gold */
     --navy: #0F1D3A;
     --navy-light: #0F1D3A;
@@ -312,7 +314,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
+    background-size: 180% !important;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
@@ -324,7 +326,14 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(15, 29, 58, 0.70);
+    /* background: rgba(15, 29, 58, 0.70); */
+    background: linear-gradient(to bottom,
+        rgba(15, 29, 58, 0.80) 0%,
+        rgba(15, 29, 58, 0.80) 10%,
+        rgba(15, 29, 58, 0.50) 20%,
+        rgba(15, 29, 58, 0.80) 70%,
+        rgba(15, 29, 58, 1) 100%
+    ) !important;
     z-index: 2;
 }
 
@@ -347,119 +356,76 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-title {
     font-family: var(--font-script);
-    font-size: clamp(3.5rem, 10vw, 7rem);
-    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     line-height: 1.1;
     font-weight: 400;
 }
 
 .hero-title .groom-name,
 .hero-title .bride-name {
-    display: block;
     color: var(--cream);
 }
 
 .hero-title .ampersand {
     font-family: var(--font-script);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(1.75rem, 5vw, 3rem);
     color: var(--gold);
-    display: block;
-    margin: 0.5rem 0;
 }
 
-.hero-divider {
-    width: 96px;
+.hero-icon {
+    color: var(--gold);
+    opacity: 0.85;
+}
+
+.hero-icon-divider {
+    width: 32px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 1.5rem auto;
+    background: linear-gradient(90deg, transparent, rgba(200, 155, 60, 0.5), transparent);
 }
 
 .hero-date {
     font-family: var(--font-serif);
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    letter-spacing: 0.1em;
-    margin-bottom: 2rem;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
+    letter-spacing: 0.05em;
     color: rgba(247, 246, 242, 0.9);
 }
 
-.hero-guest {
+.hero-guest-label {
     font-family: var(--font-body);
-    font-size: 0.875rem;
-    color: rgba(200, 155, 60, 0.75);
-    margin-bottom: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(247, 246, 242, 0.5);
 }
 
-.hero-guest span {
+.hero-guest-name {
+    display: inline-block;
+    margin-top: 0.35rem;
     font-family: var(--font-serif);
-    font-size: 1.25rem;
-    color: var(--cream);
+    font-size: 1.5rem;
+    color: var(--gold);
 }
 
 .hero-invitation {
     font-family: var(--font-body);
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    color: rgba(247, 246, 242, 0.75);
-    max-width: 28rem;
-    margin: 0 auto;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+    color: rgba(247, 246, 242, 0.8);
 }
 
 .scroll-indicator {
     position: absolute;
     bottom: 2rem;
-    left: calc(50% - 36px);
-    transform: translateX(-50%);
-    z-index: 10;
-    text-align: center;
-    color: var(--cream);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.scroll-indicator span {
-    display: block;
-    font-size: 0.625rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    color: rgba(247, 246, 242, 0.5);
-}
-
-
-
-.scroll-arrow {
-    width: 24px;
-    height: 40px;
-    border: 1px solid rgba(247, 246, 242, 0.3);
-    border-radius: 12px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.scroll-arrow::before {
-    content: '';
-    position: absolute;
-    top: 8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 4px;
-    height: 12px;
-    background: rgba(200, 155, 60, 0.7);
-    border-radius: 2px;
-    animation: scrollDown 1.5s ease-in-out infinite;
+    z-index: 10;
+    color: rgba(200, 155, 60, 0.7);
 }
 
-@keyframes scrollDown {
-    0%, 100% {
-        opacity: 1;
-        top: 8px;
-    }
-    50% {
-        opacity: 0;
-        top: 18px;
-    }
+.scroll-chevron {
+    display: block;
 }
 
 /* ========================================
@@ -499,7 +465,7 @@ h1, h2, h3, h4, h5, h6 {
 .countdown-label {
     display: block;
     font-size: 0.8rem;
-    color: var(--navy);
+    color: rgba(247, 246, 242, 0.75);
     letter-spacing: 1px;
     margin-top: 0.5rem;
     text-transform: uppercase;
@@ -510,6 +476,58 @@ h1, h2, h3, h4, h5, h6 {
     font-size: clamp(2rem, 5vw, 3rem);
     color: var(--gold);
     margin-top: -1rem;
+}
+
+/* ========================================
+   Quran Verse Section
+   ======================================== */
+.quran-section {
+    padding: 5rem 0;
+    background: var(--navy);
+}
+
+.quran-verse {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 1.5rem;
+}
+
+.quran-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.quran-divider-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.quran-divider-icon {
+    color: var(--gold);
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.quran-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    line-height: 1.7;
+    color: var(--cream);
+    margin-bottom: 2rem;
+}
+
+.quran-source {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
 }
 
 /* ========================================
@@ -1151,4 +1169,47 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
     opacity: 0.7;
     letter-spacing: 2px;
+}
+
+/* ========================================
+   Parallax Background - Navy Sections
+   ======================================== */
+.quran-section,
+.countdown-section,
+.gallery-section,
+.event-section,
+.rsvp-section,
+.gift-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.quran-section::before,
+.countdown-section::before,
+.gallery-section::before,
+.event-section::before,
+.rsvp-section::before,
+.gift-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(212, 175, 55, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+    background-size: cover, cover, 40px 40px;
+    background-attachment: fixed;
+    background-repeat: no-repeat, no-repeat, repeat;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.quran-section > .container,
+.countdown-section > .container,
+.gallery-section > .container,
+.event-section > .container,
+.rsvp-section > .container,
+.gift-section > .container {
+    position: relative;
+    z-index: 1;
 }

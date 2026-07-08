@@ -194,7 +194,7 @@
     }
     
     .timeline-content {
-        border-left: 4px solid var(--color-gold);
+        border-left: 4px solid var(--gold);
         border-top: none;
     }
     
@@ -281,6 +281,17 @@
     .btn-submit:hover {
         transform: none;
     }
+
+    /* Fixed background-attachment is unreliable/janky on iOS & touch browsers,
+       so fall back to a static (scroll) background there */
+    .quran-section::before,
+    .countdown-section::before,
+    .gallery-section::before,
+    .event-section::before,
+    .rsvp-section::before,
+    .gift-section::before {
+        background-attachment: scroll;
+    }
 }
 
 /* ========================================
@@ -290,40 +301,6 @@
     .hero-overlay {
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(212,175,55,0.15)"/></svg>');
         background-size: 50px 50px;
-    }
-}
-
-/* ========================================
-   Dark mode support (optional enhancement)
-   ======================================== */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-cream: #1a1a2e;
-        --color-white: #16213e;
-        --color-text-dark: #eaeaea;
-        --color-text-light: #b0b0b0;
-    }
-    
-    .couple-card,
-    .event-card,
-    .wish-card,
-    .gift-card,
-    .rsvp-form,
-    .timeline-content {
-        background: var(--color-white);
-    }
-    
-    .countdown-section,
-    .gallery-section,
-    .rsvp-section,
-    .gift-section {
-        background: var(--color-cream);
-    }
-    
-    .couple-section,
-    .event-section,
-    .wishes-section {
-        background: var(--color-cream);
     }
 }
 
@@ -342,7 +319,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-    outline: 3px solid var(--color-gold);
+    outline: 3px solid var(--gold);
     outline-offset: 2px;
 }
 
@@ -351,8 +328,8 @@ textarea:focus-visible {
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--color-navy);
-    color: var(--color-white);
+    background: var(--navy);
+    color: var(--white);
     padding: 8px;
     z-index: 100000;
     transition: top 0.3s;

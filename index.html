@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="light only">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Undangan Pernikahan Dandy & Intan - 2 Agustus 2026">
     <meta name="theme-color" content="#0F1D3A">
@@ -101,7 +102,9 @@
         <!-- Hero Section -->
         <section class="hero relative h-screen w-full overflow-hidden" id="hero">
             <!-- Background Image -->
-            <div class="hero-bg absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.hostinger.com/c6e739c3-cf5d-4d70-ab6c-71cdd6f2aa54.png');"></div>
+            <!-- <div class="hero-bg absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.hostinger.com/c6e739c3-cf5d-4d70-ab6c-71cdd6f2aa54.png');"></div> -->
+            <div class="hero-bg absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat" style="background-image: url('images/hero/hero.jpg');"></div>
+            
             <!-- Navy Overlay (60-70% opacity) -->
             <div class="hero-overlay absolute inset-0 bg-navy/70"></div>
             
@@ -110,33 +113,70 @@
                 <!-- Small Text: THE WEDDING OF -->
                 <p class="hero-pretitle reveal text-gold/75 text-xs md:text-sm uppercase tracking-[0.3em] mb-6 md:mb-8">The Wedding of</p>
                 
-                <!-- Large Couple Names - Dominating -->
-                <h1 class="hero-title reveal font-script text-6xl md:text-8xl lg:text-9xl text-cream font-normal leading-tight mb-4 md:mb-6">
-                    <span class="groom-name block">Dandy</span>
-                    <span class="ampersand text-gold text-4xl md:text-6xl lg:text-7xl block my-2 md:my-4">&</span>
-                    <span class="bride-name block">Intan</span>
+                <!-- Couple Names - Single Line -->
+                <h1 class="hero-title reveal font-script text-cream font-normal leading-tight mb-6 md:mb-8 flex flex-wrap items-center justify-center gap-2 md:gap-4">
+                    <span class="groom-name">Dandy</span>
+                    <span class="ampersand text-gold">&amp;</span>
+                    <span class="bride-name">Intan</span>
                 </h1>
-                
-                <!-- Small Decorative Divider -->
-                <div class="hero-divider reveal w-24 md:w-32 h-px bg-gradient-to-r from-transparent via-gold to-transparent my-4 md:my-6"></div>
+
+                <!-- Profession Icons Divider -->
+                <div class="hero-icons reveal flex items-center justify-center gap-3 md:gap-4 mb-6 md:mb-8">
+                    <svg class="hero-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                        <line x1="6" y1="2" x2="6" y2="4"/>
+                        <line x1="10" y1="2" x2="10" y2="4"/>
+                        <line x1="14" y1="2" x2="14" y2="4"/>
+                    </svg>
+                    <span class="hero-icon-divider"></span>
+                    <svg class="hero-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M6.5 6.5 17.5 17.5"/>
+                        <path d="m21 21-1.5-1.5"/>
+                        <path d="M4.5 4.5 3 3"/>
+                        <path d="m18 6-2.5 2.5"/>
+                        <path d="m8.5 15.5-2.5 2.5"/>
+                        <path d="m3.5 8.5 2.5 2.5"/>
+                        <path d="m12.5 17.5 2.5 2.5"/>
+                    </svg>
+                </div>
                 
                 <!-- Wedding Date -->
-                <p class="hero-date reveal text-cream/90 text-lg md:text-xl font-serif tracking-wide mb-6 md:mb-8">2 Agustus 2026</p>
+                <p class="hero-date reveal font-serif tracking-wide mb-6 md:mb-8">02 Agustus 2026</p>
                 
                 <!-- Guest Name (from URL) -->
-                <p class="hero-guest reveal text-gold/75 text-sm md:text-base font-body mb-4">Kepada Yth.<br><span id="heroGuestName" class="text-cream font-serif text-lg md:text-xl">Tamu Undangan</span></p>
+                <p class="hero-guest reveal mb-4">
+                    <span class="hero-guest-label">Kepada Yth.</span><br>
+                    <span id="heroGuestName" class="hero-guest-name">Tamu Undangan</span>
+                </p>
                 
                 <!-- Invitation Text -->
-                <p class="hero-invitation reveal text-cream/75 text-xs md:text-sm font-body tracking-wide max-w-md mx-auto">
-                    
+                <p class="hero-invitation reveal max-w-md mx-auto">
+                    Tanpa mengurangi rasa hormat, kami mengundang Anda  <br>untuk hadir dan memberikan doa restu.
                 </p>
             </div>
             
             <!-- Elegant Scroll Indicator -->
             <div class="scroll-indicator reveal" id="scrollIndicator">
-                <span class="text-cream/50 text-xs uppercase tracking-widest">Scroll Down</span>
-                <div class="scroll-arrow w-6 h-10 border-2 border-cream/30 rounded-full flex justify-center pt-2">
-                    <div class="w-1 h-3 bg-gold/70 rounded-full animate-bounce"></div>
+                <svg class="scroll-chevron animate-bounce" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </div>
+        </section>
+
+       
+
+        <!-- Quran Verse Section -->
+        <section class="quran-section" id="quran">
+            <div class="container">
+                <div class="quran-verse reveal">
+                    <div class="quran-divider">
+                        <span class="quran-divider-line"></span>
+                        <span class="quran-divider-icon">&#9829;</span>
+                        <span class="quran-divider-line"></span>
+                    </div>
+                    <p class="quran-text">&ldquo;Dan di antara tanda-tanda kekuasaan-Nya diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri, supaya kamu mendapat ketenangan hati.&rdquo;</p>
+                    <p class="quran-source">Q.S. Ar-Rum : 21</p>
                 </div>
             </div>
         </section>
@@ -144,7 +184,7 @@
        
 
         <!-- Couple Section -->
-        <section class="couple-section" id="couple" style="background-color: var(--bright);">
+        <section class="couple-section" id="couple">
             <div class="container">
                 <h2 class="section-title reveal">Mempelai</h2>
                 <p class="section-subtitle reveal">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan putra-putri kami:</p>
@@ -172,7 +212,7 @@
         </section>
 
          <!-- Countdown Section -->
-        <section class="countdown-section" id="countdown" style="background-color: var(--bright);">
+        <section class="countdown-section" id="countdown">
             <div class="container">
                 <h2 class="section-title reveal">Menuju Hari Bahagia</h2>
                 <div class="countdown-container reveal">
@@ -200,7 +240,7 @@
         </section>
 
         <!-- Love Story Timeline -->
-        <section class="timeline-section" id="timeline" style="background-color: var(--navy);">
+        <section class="timeline-section" id="timeline">
             <div class="container">
                 <h2 class="section-title reveal">Kisah Cinta Kami</h2>
                 <div class="timeline">
@@ -241,7 +281,7 @@
         </section>
 
         <!-- Gallery Section -->
-        <section class="gallery-section py-16 md:py-24" id="gallery" style="background-color: var(--bright);">
+        <section class="gallery-section py-16 md:py-24" id="gallery">
             <div class="container mx-auto px-4">
                 <h2 class="section-title reveal text-center font-script text-5xl md:text-6xl text-gold mb-4">Galeri Foto</h2>
                 <p class="section-subtitle reveal text-center text-cream/75 text-sm md:text-base mb-12 max-w-2xl mx-auto">Momen-momen indah yang abadi</p>
@@ -279,7 +319,7 @@
         </div>
 
         <!-- Event Section -->
-        <section class="event-section" id="event" style="background-color: var(--navy);">
+        <section class="event-section" id="event">
             <div class="container">
                 <h2 class="section-title reveal">Rangkaian Acara</h2>
                 <div class="events-container">
@@ -364,7 +404,7 @@
         </section>
 
         <!-- RSVP Section -->
-        <section class="rsvp-section" id="rsvp" style="background-color: var(--bright);">
+        <section class="rsvp-section" id="rsvp">
             <div class="container">
                 <h2 class="section-title reveal">Konfirmasi Kehadiran</h2>
                 <p class="section-subtitle reveal">Mohon konfirmasi kehadiran Anda sebelum tanggal 25 Juli 2026</p>
@@ -404,7 +444,7 @@
         </section>
 
         <!-- Wishes Section -->
-        <section class="wishes-section" id="wishes" style="background-color: var(--navy);">
+        <section class="wishes-section" id="wishes">
             <div class="container">
                 <h2 class="section-title reveal">Pesan & Doa</h2>
                 <div class="wishes-container" id="wishesContainer">
@@ -445,7 +485,7 @@
         </section>
 
         <!-- Gift Section -->
-        <section class="gift-section" id="gift" style="background-color: var(--bright);">
+        <section class="gift-section" id="gift">
             <div class="container">
                 <h2 class="section-title reveal">Wedding Gift</h2>
                 <p class="section-subtitle reveal">Doa restu Anda merupakan kado terindah bagi kami. Namun jika berkenan memberikan hadiah, dapat melalui:</p>
