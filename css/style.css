@@ -1083,7 +1083,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bank-name {
-    color: var(--navy);
+    color: #0b0b0b;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
