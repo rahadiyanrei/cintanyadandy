@@ -661,8 +661,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .timeline-year {
     display: inline-block;
-    background: var(--navy);
-    color: var(--gold);
+    background: #C79A3B;
+    color: #fff;
     padding: 0.3rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
