@@ -407,7 +407,7 @@ h1, h2, h3, h4, h5, h6 {
 .scroll-indicator {
     position: absolute;
     bottom: 2rem;
-    left: 50%;
+     left: calc(50% - 36px);
     transform: translateX(-50%);
     z-index: 10;
     text-align: center;
@@ -426,6 +426,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.5rem;
     color: rgba(247, 246, 242, 0.5);
 }
+
+
 
 .scroll-arrow {
     width: 24px;
