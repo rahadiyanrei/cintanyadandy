@@ -184,6 +184,11 @@
             </div>
         </section>
 
+        <!-- Video Section (Square & Infinite Loop) -->
+        
+
+        
+
        
 
         <!-- Couple Section -->
@@ -242,6 +247,23 @@
                         <span class="countdown-number" id="seconds">00</span>
                         <span class="countdown-label">Detik</span>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="video-section py-12 md:py-16 bg-navy" id="wedding-video">
+            <div class="container mx-auto px-4 flex justify-center">
+                <!-- Added bg-black and forced border-color to gold to override any global white outlines -->
+                <div class="w-full max-w-md aspect-square rounded-lg overflow-hidden border border-gold/30 bg-black shadow-lg reveal">
+                    <video 
+                        class="w-full h-full object-cover block bg-transparent" 
+                        src="audio/loop3.mp4" 
+                        autoplay 
+                        loop 
+                        muted 
+                        playsinline>
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </section>
@@ -514,17 +536,20 @@
     <!-- Supabase Integration Script -->
     
     <!-- Wishes & RSVP Integration Script -->
-<script>
+    <script>
     (function() {
-        // Endpoint URL dari Edge Functions Supabase Anda
-        const ENDPOINT_READ = "https://terfhdgbfirpdvsvrrdp.supabase.co/functions/v1/wishes-public";
-        const ENDPOINT_INSERT = "https://terfhdgbfirpdvsvrrdp.supabase.co/functions/v1/wishes-insert";
+        // Konfigurasi Supabase Client
+        const SUPABASE_URL = "https://terfhdgbfirpdvsvrrdp.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_ci2dwPZQcS5ZqJqiGX4dbA_pUW4zpMY";
+        
+        // Inisialisasi Supabase Client
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         const rsvpForm = document.getElementById('rsvpForm');
         const wishesContainer = document.getElementById('wishesContainer');
         const btnSubmitRsvp = document.getElementById('btnSubmitRsvp');
 
-        // Fungsi pembantu format waktu (contoh: 2 jam lalu, 1 hari lalu)
+        // Fungsi pembantu format waktu
         function formatTimeAgo(dateString) {
             const date = new Date(dateString);
             const now = new Date();
@@ -539,19 +564,23 @@
             return `${diffInDays} hari lalu`;
         }
 
-        // 1. FUNGSI READ: Membaca data ucapan dari endpoint wishes-public
+        // 1. FUNGSI READ: Memanggil Edge Function 'wishes-public' via SDK
         async function fetchWishes() {
             try {
-                // Mengambil 20 data ucapan terbaru menggunakan query params limit
-                const response = await fetch(`${ENDPOINT_READ}?limit=20&offset=0`, {
-                    method: 'GET'
+                // Menggunakan invoke dengan query params langsung di nama fungsinya
+                const { data: responseBody, error } = await supabaseClient.functions.invoke('wishes-public', {
+                    method: 'GET',
+                    headers: {
+                        // Walau pakai SDK, kita bisa selipkan query params lewat modifikasi URL atau langsung ditempel begini:
+                        'url': `${SUPABASE_URL}/functions/v1/wishes-public?limit=20&offset=0`
+                    }
                 });
 
-                if (!response.ok) throw new Error('Gagal mengambil data dari server');
-                
-                const data = await response.json();
+                if (error) throw error;
 
-                // Bersihkan kontainer utama
+                // Karena Edge Function mengembalikan objek { data, limit, offset }
+                const data = responseBody.data;
+
                 wishesContainer.innerHTML = '';
 
                 if (!data || data.length === 0) {
@@ -559,7 +588,6 @@
                     return;
                 }
 
-                // Render data ucapan dinamis dari array response
                 data.forEach(wish => {
                     const initial = wish.name ? wish.name.charAt(0).toUpperCase() : '?';
                     const timeAgo = formatTimeAgo(wish.created_at);
@@ -584,12 +612,12 @@
                     wishesContainer.appendChild(wishCard);
                 });
             } catch (error) {
-                console.error('Error fetching wishes:', error.message);
+                console.error('Error fetching wishes via SDK:', error.message);
                 wishesContainer.innerHTML = '<p class="text-center text-rose-400/75 py-4">Gagal memuat pesan dan doa.</p>';
             }
         }
 
-        // 2. FUNGSI INSERT: Mengirim data ke endpoint wishes-insert
+        // 2. FUNGSI INSERT: Mengirim data ke Edge Function 'wishes-insert' via SDK
         if (rsvpForm) {
             rsvpForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -604,26 +632,20 @@
                 const comment = document.getElementById('pesan').value;
 
                 try {
-                    const response = await fetch(ENDPOINT_INSERT, {
+                    // Mengirim POST payload menggunakan .invoke() bawaan Supabase
+                    const { data, error } = await supabaseClient.functions.invoke('wishes-insert', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ name, comment, is_attend })
+                        body: { name, comment, is_attend } // Payload otomatis di-stringify oleh SDK
                     });
 
-                    if (!response.ok) {
-                        const errData = await response.json().catch(() => ({}));
-                        throw new Error(errData.error || `Server merespon dengan status ${response.status}`);
-                    }
+                    if (error) throw error;
 
-                    // Reset form input & jalankan re-fetch data ucapan secara real-time
                     rsvpForm.reset();
                     await fetchWishes();
                     alert('Terima kasih atas konfirmasi dan doa restunya!');
                     
                 } catch (error) {
-                    console.error('Error submitting RSVP:', error.message);
+                    console.error('Error submitting RSVP via SDK:', error.message);
                     alert(`Gagal mengirim konfirmasi: ${error.message}`);
                 } finally {
                     if(btnSubmitRsvp) {
@@ -634,9 +656,11 @@
             });
         }
 
-        // Load data ucapan pertama kali saat halaman selesai dimuat
+        // Jalankan fetch saat pertama kali load
         fetchWishes();
     })();
 </script>
+
+
 </body>
 </html>
