@@ -15,6 +15,8 @@
     
     <!-- Tailwind CSS (CDN for no-build setup) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         .hidden { display: none !important; }
     </style>
@@ -412,67 +414,38 @@
                         <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap">
                     </div>
                     
-                    
-                    
                     <div class="form-group">
                         <label for="konfirmasi">Konfirmasi Kehadiran</label>
+                        <!-- Mengubah nilai value menjadi true/false agar cocok dengan boolean di database -->
                         <select id="konfirmasi" name="konfirmasi" required>
                             <option value="">Pilih konfirmasi</option>
-                            <option value="hadir">Hadir</option>
-                            <option value="tidak_hadir">Tidak Hadir</option>
+                            <option value="true">Hadir</option>
+                            <option value="false">Tidak Hadir</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="pesan">Pesan & Doa</label>
-                        <textarea id="pesan" name="pesan" rows="4" placeholder="Tuliskan pesan dan doa untuk mempelai"></textarea>
+                        <textarea id="pesan" name="pesan" rows="4" required placeholder="Tuliskan pesan dan doa untuk mempelai"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn-submit">Kirim Konfirmasi</button>
+                    <button type="submit" class="btn-submit" id="btnSubmitRsvp">Kirim Konfirmasi</button>
                 </form>
             </div>
         </section>
 
         <!-- Wishes Section -->
-        <section class="wishes-section" id="wishes">
-            <div class="container">
-                <h2 class="section-title reveal">Pesan & Doa</h2>
-                <div class="wishes-container" id="wishesContainer">
-                    <div class="wish-card reveal">
-                        <div class="wish-header">
-                            <div class="wish-avatar">A</div>
-                            <div class="wish-info">
-                                <h4>Ahmad Fauzi</h4>
-                                <span class="wish-time">2 jam lalu</span>
-                            </div>
-                        </div>
-                        <p class="wish-message">Selamat menempuh hidup baru Dandy & Intan. Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Aamiin.</p>
-                    </div>
-                    
-                    <div class="wish-card reveal">
-                        <div class="wish-header">
-                            <div class="wish-avatar">S</div>
-                            <div class="wish-info">
-                                <h4>Siti Nurhaliza</h4>
-                                <span class="wish-time">1 hari lalu</span>
-                            </div>
-                        </div>
-                        <p class="wish-message">Barakallah untuk kedua mempelai. Semoga perjalanan rumah tangga selalu diberkahi Allah SWT.</p>
-                    </div>
-                    
-                    <div class="wish-card reveal">
-                        <div class="wish-header">
-                            <div class="wish-avatar">B</div>
-                            <div class="wish-info">
-                                <h4>Budi Santoso</h4>
-                                <span class="wish-time">3 hari lalu</span>
-                            </div>
-                        </div>
-                        <p class="wish-message">Happy Wedding Dandy & Intan! Semoga bahagia selamanya dan dikaruniai keturunan yang sholeh/sholehah.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Wishes Section -->
+<section class="wishes-section" id="wishes">
+    <div class="container mx-auto px-4 py-12">
+        <h2 class="section-title reveal text-center font-script text-4xl md:text-5xl text-gold mb-8">Pesan & Doa</h2>
+        
+        <!-- Biarkan kontainer ini kosong, Supabase akan mengisi data ke sini -->
+        <div class="wishes-container max-w-2xl mx-auto space-y-4" id="wishesContainer">
+            <p class="text-center text-cream/50 py-4 animate-pulse">Memuat pesan dan doa...</p>
+        </div>
+    </div>
+</section>
 
         <!-- Gift Section -->
         <section class="gift-section" id="gift">
@@ -538,5 +511,132 @@
     <script src="js/guest.js"></script>
     
     <script src="js/animation.js"></script>
+    <!-- Supabase Integration Script -->
+    
+    <!-- Wishes & RSVP Integration Script -->
+<script>
+    (function() {
+        // Endpoint URL dari Edge Functions Supabase Anda
+        const ENDPOINT_READ = "https://terfhdgbfirpdvsvrrdp.supabase.co/functions/v1/wishes-public";
+        const ENDPOINT_INSERT = "https://terfhdgbfirpdvsvrrdp.supabase.co/functions/v1/wishes-insert";
+
+        const rsvpForm = document.getElementById('rsvpForm');
+        const wishesContainer = document.getElementById('wishesContainer');
+        const btnSubmitRsvp = document.getElementById('btnSubmitRsvp');
+
+        // Fungsi pembantu format waktu (contoh: 2 jam lalu, 1 hari lalu)
+        function formatTimeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffInSeconds = Math.floor((now - date) / 1000);
+            
+            if (diffInSeconds < 60) return 'Baru saja';
+            const diffInMinutes = Math.floor(diffInSeconds / 60);
+            if (diffInMinutes < 60) return `${diffInMinutes} menit lalu`;
+            const diffInHours = Math.floor(diffInMinutes / 60);
+            if (diffInHours < 24) return `${diffInHours} jam lalu`;
+            const diffInDays = Math.floor(diffInHours / 24);
+            return `${diffInDays} hari lalu`;
+        }
+
+        // 1. FUNGSI READ: Membaca data ucapan dari endpoint wishes-public
+        async function fetchWishes() {
+            try {
+                // Mengambil 20 data ucapan terbaru menggunakan query params limit
+                const response = await fetch(`${ENDPOINT_READ}?limit=20&offset=0`, {
+                    method: 'GET'
+                });
+
+                if (!response.ok) throw new Error('Gagal mengambil data dari server');
+                
+                const data = await response.json();
+
+                // Bersihkan kontainer utama
+                wishesContainer.innerHTML = '';
+
+                if (!data || data.length === 0) {
+                    wishesContainer.innerHTML = '<p class="text-center text-cream/50 py-6 font-serif italic">Belum ada ucapan dari tamu undangan.</p>';
+                    return;
+                }
+
+                // Render data ucapan dinamis dari array response
+                data.forEach(wish => {
+                    const initial = wish.name ? wish.name.charAt(0).toUpperCase() : '?';
+                    const timeAgo = formatTimeAgo(wish.created_at);
+                    
+                    const statusBadge = wish.is_attend 
+                        ? '<span class="text-[10px] uppercase tracking-wider bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 ml-2">Hadir</span>' 
+                        : '<span class="text-[10px] uppercase tracking-wider bg-rose-500/10 text-rose-400 px-2 py-0.5 rounded border border-rose-500/20 ml-2">Absen</span>';
+
+                    const wishCard = document.createElement('div');
+                    wishCard.className = 'wish-card reveal p-5 rounded-sm border border-gold/10 bg-navy-light/30 mb-4';
+                    
+                    wishCard.innerHTML = `
+                        <div class="wish-header flex items-center mb-3">
+                            <div class="wish-avatar w-10 h-10 rounded-full bg-gold/10 border border-gold/30 text-gold flex items-center justify-center font-serif font-bold text-lg mr-3">${initial}</div>
+                            <div class="wish-info">
+                                <h4 class="font-serif font-medium text-cream flex items-center text-base">${wish.name} ${statusBadge}</h4>
+                                <span class="wish-time text-xs text-cream/40">${timeAgo}</span>
+                            </div>
+                        </div>
+                        <p class="wish-message text-sm md:text-base text-cream/80 pl-1 leading-relaxed italic">&ldquo;${wish.comment}&rdquo;</p>
+                    `;
+                    wishesContainer.appendChild(wishCard);
+                });
+            } catch (error) {
+                console.error('Error fetching wishes:', error.message);
+                wishesContainer.innerHTML = '<p class="text-center text-rose-400/75 py-4">Gagal memuat pesan dan doa.</p>';
+            }
+        }
+
+        // 2. FUNGSI INSERT: Mengirim data ke endpoint wishes-insert
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if(btnSubmitRsvp) {
+                    btnSubmitRsvp.disabled = true;
+                    btnSubmitRsvp.innerText = 'Mengirim Ucapan...';
+                }
+
+                const name = document.getElementById('nama').value;
+                const is_attend = document.getElementById('konfirmasi').value === 'true';
+                const comment = document.getElementById('pesan').value;
+
+                try {
+                    const response = await fetch(ENDPOINT_INSERT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ name, comment, is_attend })
+                    });
+
+                    if (!response.ok) {
+                        const errData = await response.json().catch(() => ({}));
+                        throw new Error(errData.error || `Server merespon dengan status ${response.status}`);
+                    }
+
+                    // Reset form input & jalankan re-fetch data ucapan secara real-time
+                    rsvpForm.reset();
+                    await fetchWishes();
+                    alert('Terima kasih atas konfirmasi dan doa restunya!');
+                    
+                } catch (error) {
+                    console.error('Error submitting RSVP:', error.message);
+                    alert(`Gagal mengirim konfirmasi: ${error.message}`);
+                } finally {
+                    if(btnSubmitRsvp) {
+                        btnSubmitRsvp.disabled = false;
+                        btnSubmitRsvp.innerText = 'Kirim Konfirmasi';
+                    }
+                }
+            });
+        }
+
+        // Load data ucapan pertama kali saat halaman selesai dimuat
+        fetchWishes();
+    })();
+</script>
 </body>
 </html>
