@@ -260,8 +260,10 @@
                         src="audio/loop3.mp4" 
                         autoplay 
                         loop 
-                        muted 
-                        playsinline>
+                        muted
+                        playsinline
+                        webkit-playsinline
+                        preload="auto">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -659,7 +661,32 @@
         // Jalankan fetch saat pertama kali load
         fetchWishes();
     })();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.querySelector("#wedding-video video");
+        
+        if (video) {
+            // Force mute just in case the browser missed the HTML attribute
+            video.muted = true; 
+            
+            // Attempt to play
+            video.play().catch(function (error) {
+                console.log("Autoplay was prevented by the browser, retrying on user interaction...", error);
+                
+                // Fail-safe: If it fails, play it the moment the user touches/clicks anywhere on the screen
+                const playOnInteraction = () => {
+                    video.play();
+                    document.removeEventListener("click", playOnInteraction);
+                    document.removeEventListener("touchstart", playOnInteraction);
+                };
+                document.addEventListener("click", playOnInteraction);
+                document.addEventListener("touchstart", playOnInteraction);
+            });
+        }
+    });
 </script>
+
+
 
 
 </body>
