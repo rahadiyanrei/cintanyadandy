@@ -7,6 +7,7 @@
 
 let isPlaying = false;
 let bgMusic = null;
+let pausedByVisibility = false; // true only if WE paused it due to tab going inactive
 
 /**
  * Initialize music control button
@@ -41,6 +42,31 @@ function initMusicControl() {
             isPlaying = false;
             updateMusicIcon();
         });
+    }
+    
+    // Only allow playback while the tab is active/visible.
+    // Auto-pause on hide, and only auto-resume if WE were the ones
+    // who paused it (don't override a manual pause by the user).
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+}
+
+/**
+ * Pause music when tab becomes hidden; resume it when tab becomes
+ * visible again, but only if it was auto-paused by this handler.
+ */
+function handleVisibilityChange() {
+    if (!bgMusic) return;
+    
+    if (document.hidden) {
+        if (isPlaying) {
+            pausedByVisibility = true;
+            pauseMusic();
+        }
+    } else {
+        if (pausedByVisibility) {
+            pausedByVisibility = false;
+            playMusic();
+        }
     }
 }
 
