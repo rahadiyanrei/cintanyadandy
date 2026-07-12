@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS (CDN for no-build setup) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Supabase JS Client -->
@@ -224,7 +224,7 @@
         </section>
 
          <!-- Countdown Section -->
-        <section class="countdown-section" id="countdown">
+        <section class="countdown-section" id="countdown" style="background-color:#051839;">
             <div class="container">
                 <h2 class="section-title reveal">Menuju Hari Bahagia</h2>
                 <div class="countdown-container reveal">
@@ -251,10 +251,10 @@
             </div>
         </section>
 
-        <section class="video-section py-12 md:py-16 bg-navy" id="wedding-video">
+        <section class="video-section py-12 md:py-16 bg-navy" id="wedding-video" style="background-color:#051839;">
             <div class="container mx-auto px-4 flex justify-center">
                 <!-- Added bg-black and forced border-color to gold to override any global white outlines -->
-                <div class="w-full max-w-md aspect-square rounded-lg overflow-hidden border border-gold/30 bg-black shadow-lg reveal">
+                <div class="w-full max-w-md aspect-square rounded-lg overflow-hidden border  bg-black shadow-lg reveal" style="border-color:#0f1d3a;">
                     <video 
                         class="w-full h-full object-cover block bg-transparent" 
                         src="audio/loop3.mp4" 
@@ -272,36 +272,132 @@
 
         <!-- Love Story Timeline -->
         <section class="timeline-section" id="timeline">
-            <div class="container">
-                <h2 class="section-title reveal">Kisah Cinta Kami</h2>
-                <div class="timeline">
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-year">2024</span>
-                            <h3>First Brew</h3>
-                            <p>Sebuah pertemuan sederhana yang menjadi awal dari kisah kami. Berawal dari saling mengenal, langkah demi langkah membawa kami semakin dekat.</p>
-                        </div>
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Kisah Cinta Kami
+        </h2>
+
+        <p class="section-subtitle">
+            Every love story is beautiful, but ours is our favorite.
+        </p>
+
+        <div class="timeline-wrapper">
+
+            <!-- Curved SVG -->
+            <svg class="timeline-svg"
+                 viewBox="0 0 250 1500"
+                 preserveAspectRatio="none">
+
+                <path
+                    d="
+                    M125 40
+                    C125 180 40 220 40 360
+                    C40 520 210 560 210 740
+                    C210 920 40 980 40 1180
+                    C40 1360 125 1450 125 1480"
+                />
+
+            </svg>
+
+            <!-- =================== -->
+
+            <div class="timeline-item left">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <div class="timeline-year">
+                        2024
                     </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-year">2025</span>
-                            <h3>Finding Balance</h3>
-                            <p>Dua keluarga dipertemukan dalam kehangatan dan kebersamaan, menguatkan keyakinan bahwa perjalanan ini layak untuk diteruskan.</p>
-                        </div>
+
+                    <span class="sparkle sparkle1">✦</span>
+                    <span class="sparkle sparkle2">✧</span>
+
+                    <h3>First Brew</h3>
+
+                    <p>
+                        Sebuah pertemuan sederhana yang menjadi awal dari kisah kami.
+                        Berawal dari saling mengenal, langkah demi langkah membawa kami
+                        semakin dekat.
+                    </p>
+
+                    <div class="flower">
+                        ❀
                     </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-year">2026</span>
-                            <h3>Forever Blend</h3>
-                            <p>Dengan doa, cinta, dan restu orang-orang terkasih, kami memulai babak baru sebagai pasangan dalam ikatan suci pernikahan.</p>
-                        </div>
-                    </div>
+
                 </div>
+
             </div>
-        </section>
+
+            <!-- =================== -->
+
+            <div class="timeline-item right">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <div class="timeline-year">
+                        2025
+                    </div>
+
+                    <span class="sparkle sparkle1">✦</span>
+                    <span class="sparkle sparkle2">✧</span>
+
+                    <h3>Finding Balance</h3>
+
+                    <p>
+                        Dua keluarga dipertemukan dalam kehangatan dan kebersamaan,
+                        menguatkan keyakinan bahwa perjalanan ini layak untuk diteruskan.
+                    </p>
+
+                    <div class="flower">
+                        ❀
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =================== -->
+
+            <div class="timeline-item left">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <div class="timeline-year">
+                        2026
+                    </div>
+
+                    <span class="sparkle sparkle1">✦</span>
+                    <span class="sparkle sparkle2">✧</span>
+
+                    <h3>Forever Blend</h3>
+
+                    <p>
+                        Dengan doa, cinta, dan restu orang-orang tercinta,
+                        kami memulai babak baru sebagai pasangan dalam
+                        ikatan suci pernikahan.
+                    </p>
+
+                    <div class="flower">
+                        ❀
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
         <!-- Gallery Section -->
         <section class="gallery-section py-16 md:py-24" id="gallery">
@@ -310,22 +406,25 @@
                 <p class="section-subtitle reveal text-center text-cream/75 text-sm md:text-base mb-12 max-w-2xl mx-auto">Momen-momen indah yang abadi</p>
                 <div class="gallery-grid grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4" id="galleryGrid">
                     <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="0">
-                        <img src="https://images.hostinger.com/f8e7ea9c-25d9-405b-900c-68019e469b4f.png" alt="Foto Pre Wedding 1" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="images/gallery/id_1.webp" alt="Foto Pre Wedding 1" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="1">
-                        <img src="https://images.hostinger.com/da680e66-be07-4ec1-8808-38d2a2d1c39b.png" alt="Foto Pre Wedding 2" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="images/gallery/id_2.webp" alt="Foto Pre Wedding 2" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="2">
-                        <img src="https://images.hostinger.com/2b8e6a09-f748-4284-9b9d-dc1d6c79947c.png" alt="Foto Pre Wedding 3" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="images/gallery/id_3.webp" alt="Foto Pre Wedding 3" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="3">
-                        <img src="https://images.hostinger.com/df372b7c-1c10-400d-a02c-7240be176c3b.png" alt="Foto Pre Wedding 4" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="images/gallery/id_4.webp" alt="Foto Pre Wedding 4" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="4">
-                        <img src="https://images.hostinger.com/93f77142-0318-449c-a78b-16fe61552ee4.png" alt="Foto Pre Wedding 5" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="images/gallery/id_6.webp" alt="Foto Pre Wedding 5" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="5">
-                        <img src="https://images.unsplash.com/photo-1567486358627-518883d6e486?w=1216&h=896&fit=crop&q=80" alt="Foto Pre Wedding 6" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
+                        <img src="images/gallery/id_7.webp" alt="Foto Pre Wedding 6" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="gallery-item reveal overflow-hidden rounded-sm cursor-pointer" data-index="5">
+                        <img src="images/gallery/id_8.webp" alt="Foto Pre Wedding 6" loading="lazy" class="w-full h-48 md:h-64 object-cover hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
             </div>
@@ -460,16 +559,21 @@
 
         <!-- Wishes Section -->
         <!-- Wishes Section -->
-<section class="wishes-section" id="wishes">
-    <div class="container mx-auto px-4 py-12">
-        <h2 class="section-title reveal text-center font-script text-4xl md:text-5xl text-gold mb-8">Pesan & Doa</h2>
+        <section class="wishes-section" id="wishes">
+            <div class="container mx-auto px-4 py-12">
+                <h2 class="section-title reveal text-center font-script text-4xl md:text-5xl text-gold mb-8">Pesan &amp; Doa</h2>
         
-        <!-- Biarkan kontainer ini kosong, Supabase akan mengisi data ke sini -->
-        <div class="wishes-container max-w-2xl mx-auto space-y-4" id="wishesContainer">
-            <p class="text-center text-cream/50 py-4 animate-pulse">Memuat pesan dan doa...</p>
-        </div>
-    </div>
-</section>
+                <div class="wishes-container max-w-2xl mx-auto" id="wishesContainer">
+                    <p class="text-center wish-muted py-4 wish-pulse">Memuat pesan dan doa...</p>
+                </div>
+        
+                <div class="wishes-loadmore-wrap max-w-2xl mx-auto" id="wishesLoadMoreWrap" style="display:none;">
+                    <button type="button" id="btnLoadMoreWishes" class="btn-load-more">
+                        Muat Lebih Banyak
+                    </button>
+                </div>
+            </div>
+        </section>
 
         <!-- Gift Section -->
         <section class="gift-section" id="gift">
@@ -481,28 +585,12 @@
                     <div class="gift-card qris reveal">
                         <h3>QRIS</h3>
                         <div class="qris-image">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=QRIS-DANDY-INTAN-WEDDING-GIFT" alt="QRIS Code" id="qrisImage">
+                            <img src="images/hero/qris2.webp" alt="QRIS Code" id="qrisImage">
                         </div>
                         <p>Scan QR Code untuk mengirim hadiah</p>
                     </div>
                     
-                    <div class="gift-card bank reveal">
-                        <h3>Transfer Bank</h3>
-                        <div class="bank-details">
-                            <div class="bank-item" >
-                                <p class="bank-name" style="color:#000;">Bank Central Asia</p>
-                                <p class="bank-account" style="color:#000;">1234567890</p>
-                                <p class="bank-holder" style="color:#000;">a.n Dandy</p>
-                                <button class="btn-copy" data-account="1234567890">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                                    </svg>
-                                    Salin No. Rekening
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </section>
@@ -536,154 +624,253 @@
     
     <script src="js/animation.js"></script>
     <!-- Supabase Integration Script -->
-    
-    <!-- Wishes & RSVP Integration Script -->
     <script>
-    (function() {
-        // Konfigurasi Supabase Client
-        const SUPABASE_URL = "https://terfhdgbfirpdvsvrrdp.supabase.co";
-        const SUPABASE_KEY = "sb_publishable_ci2dwPZQcS5ZqJqiGX4dbA_pUW4zpMY";
-        
-        // Inisialisasi Supabase Client
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        const rsvpForm = document.getElementById('rsvpForm');
-        const wishesContainer = document.getElementById('wishesContainer');
-        const btnSubmitRsvp = document.getElementById('btnSubmitRsvp');
-
-        // Fungsi pembantu format waktu
-        function formatTimeAgo(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffInSeconds = Math.floor((now - date) / 1000);
-            
-            if (diffInSeconds < 60) return 'Baru saja';
-            const diffInMinutes = Math.floor(diffInSeconds / 60);
-            if (diffInMinutes < 60) return `${diffInMinutes} menit lalu`;
-            const diffInHours = Math.floor(diffInMinutes / 60);
-            if (diffInHours < 24) return `${diffInHours} jam lalu`;
-            const diffInDays = Math.floor(diffInHours / 24);
-            return `${diffInDays} hari lalu`;
+(function() {
+    const SUPABASE_URL = "https://terfhdgbfirpdvsvrrdp.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_ci2dwPZQcS5ZqJqiGX4dbA_pUW4zpMY";
+    const PAGE_SIZE = 5;
+ 
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+ 
+    const rsvpForm = document.getElementById('rsvpForm');
+    const wishesContainer = document.getElementById('wishesContainer');
+    const btnSubmitRsvp = document.getElementById('btnSubmitRsvp');
+    const loadMoreWrap = document.getElementById('wishesLoadMoreWrap');
+    const btnLoadMore = document.getElementById('btnLoadMoreWishes');
+ 
+    let offset = 0;
+    let hasMore = true;
+    let isLoading = false;
+ 
+    function formatTimeAgo(dateString) {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffInSeconds = Math.floor((now - date) / 1000);
+ 
+        if (diffInSeconds < 60) return 'Baru saja';
+        const diffInMinutes = Math.floor(diffInSeconds / 60);
+        if (diffInMinutes < 60) return `${diffInMinutes} menit lalu`;
+        const diffInHours = Math.floor(diffInMinutes / 60);
+        if (diffInHours < 24) return `${diffInHours} jam lalu`;
+        const diffInDays = Math.floor(diffInHours / 24);
+        return `${diffInDays} hari lalu`;
+    }
+ 
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str ?? '';
+        return div.innerHTML;
+    }
+ 
+    // Popup pengganti alert() — type: 'success' | 'error'
+    function showWishPopup({ type = 'success', title = '', message = '' } = {}) {
+        const overlay = document.createElement('div');
+        overlay.className = 'wish-popup-overlay';
+ 
+        const icon = type === 'success' ? '&#10003;' : '&#10005;'; // ✓ / ✕
+ 
+        overlay.innerHTML = `
+            <div class="wish-popup-card">
+                <div class="wish-popup-icon ${type}">${icon}</div>
+                <h3 class="wish-popup-title">${escapeHtml(title)}</h3>
+                <p class="wish-popup-message">${escapeHtml(message)}</p>
+                <button type="button" class="wish-popup-close">Tutup</button>
+            </div>
+        `;
+ 
+        document.body.appendChild(overlay);
+        // trigger enter animation on next frame
+        requestAnimationFrame(() => overlay.classList.add('is-open'));
+ 
+        function close() {
+            overlay.classList.remove('is-open');
+            setTimeout(() => overlay.remove(), 250);
+            document.removeEventListener('keydown', onKeydown);
         }
+        function onKeydown(e) {
+            if (e.key === 'Escape') close();
+        }
+ 
+        overlay.querySelector('.wish-popup-close').addEventListener('click', close);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) close();
+        });
+        document.addEventListener('keydown', onKeydown);
+    }
+ 
+    function renderWishCard(wish) {
+    const name = escapeHtml(wish.name || 'Guest');
+    const comment = escapeHtml(wish.comment || '-');
 
-        // 1. FUNGSI READ: Memanggil Edge Function 'wishes-public' via SDK
-        async function fetchWishes() {
-            try {
-                // Menggunakan invoke dengan query params langsung di nama fungsinya
-                const { data: responseBody, error } = await supabaseClient.functions.invoke('wishes-public', {
-                    method: 'GET',
-                    headers: {
-                        // Walau pakai SDK, kita bisa selipkan query params lewat modifikasi URL atau langsung ditempel begini:
-                        'url': `${SUPABASE_URL}/functions/v1/wishes-public?limit=20&offset=0`
-                    }
-                });
+    const card = document.createElement('div');
+    card.className = 'wish-card';
+    card.innerHTML = `<div class="wish-header">
+<div class="wish-top">
+<h4 title="${name}">${name}</h4>
+<span class="wish-badge ${wish.is_attend ? 'attend' : 'absent'}">${wish.is_attend ? '' : ''}${wish.is_attend ? 'Hadir' : 'Berhalangan'}</span>
+</div>
+</div>
+<p class="wish-message">&ldquo;${comment}&rdquo;</p>
+<span class="wish-time">${formatTimeAgo(wish.created_at)}</span>`;
 
-                if (error) throw error;
-
-                // Karena Edge Function mengembalikan objek { data, limit, offset }
-                const data = responseBody.data;
-
-                wishesContainer.innerHTML = '';
-
-                if (!data || data.length === 0) {
-                    wishesContainer.innerHTML = '<p class="text-center text-cream/50 py-6 font-serif italic">Belum ada ucapan dari tamu undangan.</p>';
-                    return;
-                }
-
-                data.forEach(wish => {
-                    const initial = wish.name ? wish.name.charAt(0).toUpperCase() : '?';
-                    const timeAgo = formatTimeAgo(wish.created_at);
-                    
-                    const statusBadge = wish.is_attend 
-                        ? '<span class="text-[10px] uppercase tracking-wider bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 ml-2">Hadir</span>' 
-                        : '<span class="text-[10px] uppercase tracking-wider bg-rose-500/10 text-rose-400 px-2 py-0.5 rounded border border-rose-500/20 ml-2">Absen</span>';
-
-                    const wishCard = document.createElement('div');
-                    wishCard.className = 'wish-card reveal p-5 rounded-sm border border-gold/10 bg-navy-light/30 mb-4';
-                    
-                    wishCard.innerHTML = `
-                        <div class="wish-header flex items-center mb-3">
-                            <div class="wish-avatar w-10 h-10 rounded-full bg-gold/10 border border-gold/30 text-gold flex items-center justify-center font-serif font-bold text-lg mr-3">${initial}</div>
-                            <div class="wish-info">
-                                <h4 class="font-serif font-medium text-cream flex items-center text-base">${wish.name} ${statusBadge}</h4>
-                                <span class="wish-time text-xs text-cream/40">${timeAgo}</span>
-                            </div>
-                        </div>
-                        <p class="wish-message text-sm md:text-base text-cream/80 pl-1 leading-relaxed italic">&ldquo;${wish.comment}&rdquo;</p>
-                    `;
-                    wishesContainer.appendChild(wishCard);
-                });
-            } catch (error) {
-                console.error('Error fetching wishes via SDK:', error.message);
-                wishesContainer.innerHTML = '<p class="text-center text-rose-400/75 py-4">Gagal memuat pesan dan doa.</p>';
+    return card;
+}
+ 
+    function updateLoadMoreButton() {
+        loadMoreWrap.style.display = hasMore ? 'flex' : 'none';
+    }
+ 
+    // reset=true -> fresh first page (used on initial load and after a new submission)
+    async function loadWishes({ reset = false } = {}) {
+        if (isLoading) return;
+        isLoading = true;
+ 
+        if (reset) {
+            offset = 0;
+            hasMore = true;
+            wishesContainer.innerHTML = '';
+        }
+ 
+        if (btnLoadMore) {
+            btnLoadMore.disabled = true;
+            btnLoadMore.textContent = 'Memuat...';
+        }
+ 
+        try {
+            const from = offset;
+            const to = offset + PAGE_SIZE - 1;
+ 
+            const { data, error } = await supabaseClient
+                .from('wishes')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .range(from, to);
+ 
+            if (error) throw error;
+ 
+            if (reset && (!data || data.length === 0)) {
+                wishesContainer.innerHTML = '<p class="text-center wish-muted py-6" style="font-style:italic;">Belum ada ucapan dari tamu undangan.</p>';
+                hasMore = false;
+                updateLoadMoreButton();
+                return;
+            }
+ 
+            data.forEach(wish => wishesContainer.appendChild(renderWishCard(wish)));
+            offset += data.length;
+ 
+            if (data.length < PAGE_SIZE) hasMore = false;
+            updateLoadMoreButton();
+ 
+        } catch (err) {
+            console.error('Error fetching wishes:', err.message);
+            if (reset) {
+                wishesContainer.innerHTML = '<p class="text-center py-4" style="color:#fb7185;">Gagal memuat pesan dan doa.</p>';
+            }
+            hasMore = false;
+            updateLoadMoreButton();
+        } finally {
+            isLoading = false;
+            if (btnLoadMore) {
+                btnLoadMore.disabled = false;
+                btnLoadMore.textContent = 'Muat Lebih Banyak';
             }
         }
-
-        // 2. FUNGSI INSERT: Mengirim data ke Edge Function 'wishes-insert' via SDK
-        if (rsvpForm) {
-            rsvpForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                if(btnSubmitRsvp) {
-                    btnSubmitRsvp.disabled = true;
-                    btnSubmitRsvp.innerText = 'Mengirim Ucapan...';
+    }
+ 
+    if (btnLoadMore) {
+        btnLoadMore.addEventListener('click', () => loadWishes());
+    }
+ 
+    if (rsvpForm) {
+        rsvpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+ 
+            if (btnSubmitRsvp) {
+                btnSubmitRsvp.disabled = true;
+                btnSubmitRsvp.innerText = 'Mengirim Ucapan...';
+            }
+ 
+            const name = document.getElementById('nama').value;
+            const is_attend = document.getElementById('konfirmasi').value === 'true';
+            const comment = document.getElementById('pesan').value;
+ 
+            try {
+                const { error } = await supabaseClient
+                    .from('wishes')
+                    .insert([{ name, comment, is_attend }]);
+ 
+                if (error) throw error;
+ 
+                rsvpForm.reset();
+                await loadWishes({ reset: true }); // reload fresh first page so the new wish shows up
+                showWishPopup({
+                    type: 'success',
+                    title: 'Terima Kasih!',
+                    message: 'Konfirmasi dan doa restu Anda telah kami terima.'
+                });
+ 
+            } catch (error) {
+                console.error('Error submitting RSVP:', error.message);
+                showWishPopup({
+                    type: 'error',
+                    title: 'Gagal Mengirim',
+                    message: error.message || 'Terjadi kesalahan, silakan coba lagi.'
+                });
+            } finally {
+                if (btnSubmitRsvp) {
+                    btnSubmitRsvp.disabled = false;
+                    btnSubmitRsvp.innerText = 'Kirim Konfirmasi';
                 }
+            }
+        });
+    }
+ 
+    // Initial load
+    loadWishes({ reset: true });
+})();
+ 
+document.addEventListener("DOMContentLoaded", function () {
+    const video = document.querySelector("#wedding-video video");
+    if (video) {
+        video.muted = true;
+        video.play().catch(function (error) {
+            console.log("Autoplay was prevented by the browser, retrying on user interaction...", error);
+            const playOnInteraction = () => {
+                video.play();
+                document.removeEventListener("click", playOnInteraction);
+                document.removeEventListener("touchstart", playOnInteraction);
+            };
+            document.addEventListener("click", playOnInteraction);
+            document.addEventListener("touchstart", playOnInteraction);
+        });
+    }
+});
+</script>
+    <!-- Wishes & RSVP Integration Script -->
+    
 
-                const name = document.getElementById('nama').value;
-                const is_attend = document.getElementById('konfirmasi').value === 'true';
-                const comment = document.getElementById('pesan').value;
+<script>
+const observer = new IntersectionObserver((entries)=>{
 
-                try {
-                    // Mengirim POST payload menggunakan .invoke() bawaan Supabase
-                    const { data, error } = await supabaseClient.functions.invoke('wishes-insert', {
-                        method: 'POST',
-                        body: { name, comment, is_attend } // Payload otomatis di-stringify oleh SDK
-                    });
+    entries.forEach(entry=>{
 
-                    if (error) throw error;
+        if(entry.isIntersecting){
 
-                    rsvpForm.reset();
-                    await fetchWishes();
-                    alert('Terima kasih atas konfirmasi dan doa restunya!');
-                    
-                } catch (error) {
-                    console.error('Error submitting RSVP via SDK:', error.message);
-                    alert(`Gagal mengirim konfirmasi: ${error.message}`);
-                } finally {
-                    if(btnSubmitRsvp) {
-                        btnSubmitRsvp.disabled = false;
-                        btnSubmitRsvp.innerText = 'Kirim Konfirmasi';
-                    }
-                }
-            });
+            entry.target.classList.add("active");
+
         }
 
-        // Jalankan fetch saat pertama kali load
-        fetchWishes();
-    })();
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const video = document.querySelector("#wedding-video video");
-        
-        if (video) {
-            // Force mute just in case the browser missed the HTML attribute
-            video.muted = true; 
-            
-            // Attempt to play
-            video.play().catch(function (error) {
-                console.log("Autoplay was prevented by the browser, retrying on user interaction...", error);
-                
-                // Fail-safe: If it fails, play it the moment the user touches/clicks anywhere on the screen
-                const playOnInteraction = () => {
-                    video.play();
-                    document.removeEventListener("click", playOnInteraction);
-                    document.removeEventListener("touchstart", playOnInteraction);
-                };
-                document.addEventListener("click", playOnInteraction);
-                document.addEventListener("touchstart", playOnInteraction);
-            });
-        }
     });
+
+},{
+    threshold:.2
+});
+
+document.querySelectorAll(".reveal").forEach(el=>{
+
+    observer.observe(el);
+
+});
 </script>
 
 
