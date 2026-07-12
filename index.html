@@ -110,6 +110,28 @@
             <!-- Navy Overlay (60-70% opacity) -->
             <div class="hero-overlay absolute inset-0 bg-navy/70"></div>
             
+            <!-- Floating Gold Particles -->
+            <div class="hero-particles absolute inset-0 z-[5] pointer-events-none" aria-hidden="true">
+                <span class="hero-particle" style="left:4%; --size:3px; --duration:14s; --delay:0s; --drift:22px;"></span>
+                <span class="hero-particle" style="left:10%; --size:5px; --duration:18s; --delay:2s; --drift:-30px;"></span>
+                <span class="hero-particle" style="left:16%; --size:2px; --duration:12s; --delay:5s; --drift:15px;"></span>
+                <span class="hero-particle" style="left:23%; --size:4px; --duration:20s; --delay:1s; --drift:-18px;"></span>
+                <span class="hero-particle" style="left:30%; --size:3px; --duration:15s; --delay:7s; --drift:25px;"></span>
+                <span class="hero-particle" style="left:37%; --size:6px; --duration:22s; --delay:3s; --drift:-22px;"></span>
+                <span class="hero-particle" style="left:44%; --size:2px; --duration:13s; --delay:9s; --drift:18px;"></span>
+                <span class="hero-particle" style="left:51%; --size:4px; --duration:17s; --delay:4s; --drift:-28px;"></span>
+                <span class="hero-particle" style="left:58%; --size:3px; --duration:19s; --delay:0.5s; --drift:20px;"></span>
+                <span class="hero-particle" style="left:65%; --size:5px; --duration:16s; --delay:6s; --drift:-15px;"></span>
+                <span class="hero-particle" style="left:71%; --size:2px; --duration:21s; --delay:8s; --drift:24px;"></span>
+                <span class="hero-particle" style="left:78%; --size:4px; --duration:14s; --delay:2.5s; --drift:-20px;"></span>
+                <span class="hero-particle" style="left:84%; --size:3px; --duration:18s; --delay:10s; --drift:16px;"></span>
+                <span class="hero-particle" style="left:90%; --size:6px; --duration:23s; --delay:1.5s; --drift:-26px;"></span>
+                <span class="hero-particle" style="left:96%; --size:2px; --duration:15s; --delay:5.5s; --drift:19px;"></span>
+                <span class="hero-particle" style="left:47%; --size:3px; --duration:20s; --delay:12s; --drift:-17px;"></span>
+                <span class="hero-particle" style="left:14%; --size:4px; --duration:17s; --delay:11s; --drift:21px;"></span>
+                <span class="hero-particle" style="left:60%; --size:2px; --duration:12s; --delay:13s; --drift:-14px;"></span>
+            </div>
+            
             <!-- Hero Content - Vertically Centered -->
             <div class="hero-content relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
                 <!-- Small Text: THE WEDDING OF -->
@@ -665,6 +687,13 @@
         return div.innerHTML;
     }
  
+    // Capitalize the first letter of each word (e.g. "asd rahayu" -> "Asd Rahayu")
+    function toTitleCase(str) {
+        return (str ?? '')
+            .toLowerCase()
+            .replace(/\b\p{L}/gu, (c) => c.toUpperCase());
+    }
+ 
     // Popup pengganti alert() — type: 'success' | 'error'
     function showWishPopup({ type = 'success', title = '', message = '' } = {}) {
         const overlay = document.createElement('div');
@@ -702,7 +731,8 @@
     }
  
     function renderWishCard(wish) {
-    const name = escapeHtml(wish.name || 'Guest');
+    const rawName = wish.name && wish.name.trim() ? wish.name.trim() : 'Guest';
+    const name = escapeHtml(toTitleCase(rawName));
     const comment = escapeHtml(wish.comment || '-');
 
     const card = document.createElement('div');
