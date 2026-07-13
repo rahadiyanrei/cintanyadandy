@@ -17,6 +17,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         .hidden { display: none !important; }
     </style>
@@ -577,7 +579,11 @@
                         <textarea id="pesan" name="pesan" rows="4" required placeholder="Tuliskan pesan dan doa untuk mempelai"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn-submit" id="btnSubmitRsvp">Kirim Konfirmasi</button>
+                    <div class="form-group">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAAD0q6Djs6eD_eo4N" data-theme="dark" data-callback="onTurnstileSuccess" data-error-callback="onTurnstileError" data-expired-callback="onTurnstileExpired"></div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="btnSubmitRsvp" disabled>Kirim Konfirmasi</button>
                 </form>
             </div>
         </section>
@@ -666,6 +672,21 @@
     let offset = 0;
     let hasMore = true;
     let isLoading = false;
+    let turnstileToken = '';
+ 
+    // Turnstile callbacks (must be global, referenced via data-callback attrs on the widget)
+    window.onTurnstileSuccess = function (token) {
+        turnstileToken = token;
+        if (btnSubmitRsvp) btnSubmitRsvp.disabled = false;
+    };
+    window.onTurnstileExpired = function () {
+        turnstileToken = '';
+        if (btnSubmitRsvp) btnSubmitRsvp.disabled = true;
+    };
+    window.onTurnstileError = function () {
+        turnstileToken = '';
+        if (btnSubmitRsvp) btnSubmitRsvp.disabled = true;
+    };
  
     function formatTimeAgo(dateString) {
         const date = new Date(dateString);
@@ -827,12 +848,29 @@
             const is_attend = document.getElementById('konfirmasi').value === 'true';
             const comment = document.getElementById('pesan').value;
  
+            if (!turnstileToken) {
+                showWishPopup({
+                    type: 'error',
+                    title: 'Verifikasi Diperlukan',
+                    message: 'Mohon selesaikan verifikasi keamanan (centang captcha) sebelum mengirim.'
+                });
+                if (btnSubmitRsvp) {
+                    btnSubmitRsvp.disabled = false;
+                    btnSubmitRsvp.innerText = 'Kirim Konfirmasi';
+                }
+                return;
+            }
+ 
             try {
-                const { error } = await supabaseClient
-                    .from('wishes')
-                    .insert([{ name, comment, is_attend }]);
+                // Token is verified server-side inside the Edge Function using the
+                // Turnstile SECRET key (never exposed to the browser). The function
+                // performs the insert itself using a service role key after verifying.
+                const { data, error } = await supabaseClient.functions.invoke('submit-wish', {
+                    body: { name, comment, is_attend, turnstileToken }
+                });
  
                 if (error) throw error;
+                if (data && data.error) throw new Error(data.error);
  
                 rsvpForm.reset();
                 await loadWishes({ reset: true }); // reload fresh first page so the new wish shows up
@@ -850,8 +888,12 @@
                     message: error.message || 'Terjadi kesalahan, silakan coba lagi.'
                 });
             } finally {
+                // Always reset Turnstile so a token can't be replayed and the
+                // guest has to re-verify before submitting again.
+                turnstileToken = '';
+                if (window.turnstile) window.turnstile.reset();
                 if (btnSubmitRsvp) {
-                    btnSubmitRsvp.disabled = false;
+                    btnSubmitRsvp.disabled = true;
                     btnSubmitRsvp.innerText = 'Kirim Konfirmasi';
                 }
             }
