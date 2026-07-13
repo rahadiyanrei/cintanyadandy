@@ -21,6 +21,90 @@
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         .hidden { display: none !important; }
+
+        /* Circular Gold Bokeh — self-contained, doesn't rely on animation.css */
+        .hero-bokeh-field { contain: layout paint; }
+        .hero-bokeh {
+            position: absolute;
+            top: var(--top, 50%);
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            background: var(--color, #D4AF50);
+            filter: blur(var(--blur));
+            opacity: 0;
+            transform: scale(0.4);
+            animation-name: bokehTwinkle;
+            animation-duration: var(--duration);
+            animation-delay: var(--delay);
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            will-change: transform, opacity;
+        }
+
+        /* Appears out of nowhere, blooms, holds briefly, then dissolves in place —
+           like an out-of-focus camera light or a K-drama ending-scene sparkle. */
+        @keyframes bokehTwinkle {
+            0% {
+                transform: scale(1);
+                opacity: 0;
+            }
+            25% {
+                transform: scale(1);
+                opacity: var(--max-opacity, 0.5);
+            }
+            55% {
+                transform: scale(1);
+                opacity: var(--max-opacity, 0.5);
+            }
+            85% {
+                transform: scale(1);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-bokeh { animation: none; opacity: 0; }
+        }
+
+        /* Ensure the shared "Muat Lebih Banyak" button style also renders
+           correctly on <a> (Lihat Lokasi) and disabled <button> (Kirim Konfirmasi) */
+        a.btn-load-more {
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+        button.btn-load-more:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-download-qr {
+            margin-top: 14px;
+        }
+
+        /* IG-style "show more / show less" toggle on long wishes */
+        .wish-more-toggle {
+            display: inline;
+            background: none;
+            border: none;
+            padding: 0;
+            margin-left: 2px;
+            font-family: inherit;
+            font-size: 0.9em;
+            font-weight: 700;
+            color: #C89B3C;
+            cursor: pointer;
+            opacity: 0.85;
+        }
+        .wish-more-toggle:hover,
+        .wish-more-toggle:focus-visible {
+            opacity: 1;
+            text-decoration: underline;
+        }
     </style>
     
     <!-- Tailwind Configuration -->
@@ -112,26 +196,28 @@
             <!-- Navy Overlay (60-70% opacity) -->
             <div class="hero-overlay absolute inset-0 bg-navy/70"></div>
             
-            <!-- Floating Gold Particles -->
-            <div class="hero-particles absolute inset-0 z-[5] pointer-events-none" aria-hidden="true">
-                <span class="hero-particle" style="left:4%; --size:3px; --duration:14s; --delay:0s; --drift:22px;"></span>
-                <span class="hero-particle" style="left:10%; --size:5px; --duration:18s; --delay:2s; --drift:-30px;"></span>
-                <span class="hero-particle" style="left:16%; --size:2px; --duration:12s; --delay:5s; --drift:15px;"></span>
-                <span class="hero-particle" style="left:23%; --size:4px; --duration:20s; --delay:1s; --drift:-18px;"></span>
-                <span class="hero-particle" style="left:30%; --size:3px; --duration:15s; --delay:7s; --drift:25px;"></span>
-                <span class="hero-particle" style="left:37%; --size:6px; --duration:22s; --delay:3s; --drift:-22px;"></span>
-                <span class="hero-particle" style="left:44%; --size:2px; --duration:13s; --delay:9s; --drift:18px;"></span>
-                <span class="hero-particle" style="left:51%; --size:4px; --duration:17s; --delay:4s; --drift:-28px;"></span>
-                <span class="hero-particle" style="left:58%; --size:3px; --duration:19s; --delay:0.5s; --drift:20px;"></span>
-                <span class="hero-particle" style="left:65%; --size:5px; --duration:16s; --delay:6s; --drift:-15px;"></span>
-                <span class="hero-particle" style="left:71%; --size:2px; --duration:21s; --delay:8s; --drift:24px;"></span>
-                <span class="hero-particle" style="left:78%; --size:4px; --duration:14s; --delay:2.5s; --drift:-20px;"></span>
-                <span class="hero-particle" style="left:84%; --size:3px; --duration:18s; --delay:10s; --drift:16px;"></span>
-                <span class="hero-particle" style="left:90%; --size:6px; --duration:23s; --delay:1.5s; --drift:-26px;"></span>
-                <span class="hero-particle" style="left:96%; --size:2px; --duration:15s; --delay:5.5s; --drift:19px;"></span>
-                <span class="hero-particle" style="left:47%; --size:3px; --duration:20s; --delay:12s; --drift:-17px;"></span>
-                <span class="hero-particle" style="left:14%; --size:4px; --duration:17s; --delay:11s; --drift:21px;"></span>
-                <span class="hero-particle" style="left:60%; --size:2px; --duration:12s; --delay:13s; --drift:-14px;"></span>
+            <!-- Floating Bokeh Lights -->
+            <div class="hero-particles hero-bokeh-field absolute inset-0 z-[5] pointer-events-none overflow-hidden" aria-hidden="true">
+                <span class="hero-bokeh" style="left:5%; top:18%; --size:83px; --blur:5.9px; --color:#D4AF50; --max-opacity:0.17; --duration:6.7s; --delay:1.3s;"></span>
+                <span class="hero-bokeh" style="left:12%; top:62%; --size:81px; --blur:5.8px; --color:#F0D9A0; --max-opacity:0.34; --duration:10.4s; --delay:0.5s;"></span>
+                <span class="hero-bokeh" style="left:20%; top:34%; --size:163px; --blur:11.6px; --color:#b4d4e8; --max-opacity:0.17; --duration:5.6s; --delay:1.4s;"></span>
+                <span class="hero-bokeh" style="left:28%; top:80%; --size:61px; --blur:4.4px; --color:#FFF3D6; --max-opacity:0.31; --duration:9.3s; --delay:4.2s;"></span>
+                <span class="hero-bokeh" style="left:34%; top:12%; --size:162px; --blur:11.6px; --color:#C89B3C; --max-opacity:0.22; --duration:8.5s; --delay:4.9s;"></span>
+                <span class="hero-bokeh" style="left:41%; top:48%; --size:56px; --blur:4.0px; --color:#E0C097; --max-opacity:0.36; --duration:6.0s; --delay:2.5s;"></span>
+                <span class="hero-bokeh" style="left:48%; top:72%; --size:126px; --blur:9.0px; --color:#D98B5F; --max-opacity:0.2; --duration:10.7s; --delay:2.0s;"></span>
+                <span class="hero-bokeh" style="left:55%; top:24%; --size:78px; --blur:5.6px; --color:#F7E7CE; --max-opacity:0.26; --duration:7.2s; --delay:2.1s;"></span>
+                <span class="hero-bokeh" style="left:62%; top:58%; --size:122px; --blur:8.7px; --color:#5cb3cb; --max-opacity:0.37; --duration:9.4s; --delay:3.2s;"></span>
+                <span class="hero-bokeh" style="left:69%; top:16%; --size:151px; --blur:10.8px; --color:#E6A57E; --max-opacity:0.18; --duration:6.8s; --delay:3.8s;"></span>
+                <span class="hero-bokeh" style="left:76%; top:76%; --size:147px; --blur:10.5px; --color:#D4AF50; --max-opacity:0.31; --duration:9.2s; --delay:0.3s;"></span>
+                <span class="hero-bokeh" style="left:83%; top:40%; --size:113px; --blur:8.1px; --color:#F0D9A0; --max-opacity:0.36; --duration:10.9s; --delay:5.1s;"></span>
+                <span class="hero-bokeh" style="left:90%; top:64%; --size:80px; --blur:5.7px; --color:#E8B4B8; --max-opacity:0.26; --duration:7.7s; --delay:5.0s;"></span>
+                <span class="hero-bokeh" style="left:96%; top:20%; --size:96px; --blur:6.9px; --color:#FFF3D6; --max-opacity:0.26; --duration:6.3s; --delay:1.6s;"></span>
+                <span class="hero-bokeh" style="left:8%; top:88%; --size:73px; --blur:5.2px; --color:#3cbfc8; --max-opacity:0.32; --duration:6.0s; --delay:4.4s;"></span>
+                <span class="hero-bokeh" style="left:52%; top:6%; --size:96px; --blur:6.9px; --color:#E0C097; --max-opacity:0.28; --duration:6.6s; --delay:5.6s;"></span>
+                <span class="hero-bokeh" style="left:16%; top:52%; --size:111px; --blur:7.9px; --color:#D98B5F; --max-opacity:0.34; --duration:10.1s; --delay:4.7s;"></span>
+                <span class="hero-bokeh" style="left:73%; top:90%; --size:113px; --blur:8.1px; --color:#F7E7CE; --max-opacity:0.37; --duration:9.8s; --delay:2.4s;"></span>
+                <span class="hero-bokeh" style="left:38%; top:92%; --size:71px; --blur:5.1px; --color:#CBA35C; --max-opacity:0.21; --duration:10.7s; --delay:5.3s;"></span>
+                <span class="hero-bokeh" style="left:88%; top:8%; --size:135px; --blur:9.6px; --color:#E6A57E; --max-opacity:0.22; --duration:8.0s; --delay:5.3s;"></span>
             </div>
             
             <!-- Hero Content - Vertically Centered -->
@@ -504,7 +590,7 @@
                                 Masjid Raya Fatimah Solo
                             </p>
                         </div>
-                        <a href="https://maps.google.com/?cid=12788351692510620369" target="_blank" class="btn-location">
+                        <a href="https://maps.google.com/?cid=12788351692510620369" target="_blank" class="btn-load-more">
                             Lihat Lokasi
                         </a>
                     </div>
@@ -544,7 +630,7 @@
                                 Masjid Raya Fatimah Solo
                             </p>
                         </div>
-                        <a href="https://maps.google.com/?cid=12788351692510620369" target="_blank" class="btn-location">
+                        <a href="https://maps.google.com/?cid=12788351692510620369" target="_blank" class="btn-load-more">
                             Lihat Lokasi
                         </a>
                     </div>
@@ -583,7 +669,10 @@
                         <div class="cf-turnstile" data-sitekey="0x4AAAAAAD0q6Djs6eD_eo4N" data-theme="dark" data-callback="onTurnstileSuccess" data-error-callback="onTurnstileError" data-expired-callback="onTurnstileExpired"></div>
                     </div>
 
-                    <button type="submit" class="btn-submit" id="btnSubmitRsvp" disabled>Kirim Konfirmasi</button>
+                    <button type="submit" class="btn-load-more" id="btnSubmitRsvp" disabled>Kirim Konfirmasi</button>
+
+                    
+                </div>
                 </form>
             </div>
         </section>
@@ -751,21 +840,40 @@
         document.addEventListener('keydown', onKeydown);
     }
  
+    const WISH_COMMENT_LIMIT = 150; // characters shown before truncating, IG-style
+
     function renderWishCard(wish) {
     const rawName = wish.name && wish.name.trim() ? wish.name.trim() : 'Guest';
     const name = escapeHtml(toTitleCase(rawName));
-    const comment = escapeHtml(wish.comment || '-');
+    const rawComment = wish.comment && wish.comment.trim() ? wish.comment.trim() : '-';
+
+    const isLong = rawComment.length > WISH_COMMENT_LIMIT;
+    const truncatedRaw = isLong ? rawComment.slice(0, WISH_COMMENT_LIMIT).trimEnd() : rawComment;
+
+    const fullHtml = escapeHtml(rawComment);
+    const truncatedHtml = escapeHtml(truncatedRaw);
 
     const card = document.createElement('div');
     card.className = 'wish-card';
     card.innerHTML = `<div class="wish-header">
 <div class="wish-top">
 <h4 title="${name}">${name}</h4>
-<span class="wish-badge ${wish.is_attend ? 'attend' : 'absent'}">${wish.is_attend ? '' : ''}${wish.is_attend ? 'Hadir' : 'Berhalangan'}</span>
+<span class="wish-badge ${wish.is_attend ? 'attend' : 'absent'}">${wish.is_attend ? 'Hadir' : 'Berhalangan'}</span>
 </div>
 </div>
-<p class="wish-message">&ldquo;${comment}&rdquo;</p>
+<p class="wish-message">&ldquo;<span class="wish-message-text">${isLong ? truncatedHtml + '&hellip;' : fullHtml}</span>&rdquo;${isLong ? ' <button type="button" class="wish-more-toggle">Selengkapnya</button>' : ''}</p>
 <span class="wish-time">${formatTimeAgo(wish.created_at)}</span>`;
+
+    if (isLong) {
+        const textEl = card.querySelector('.wish-message-text');
+        const toggleBtn = card.querySelector('.wish-more-toggle');
+        let expanded = false;
+        toggleBtn.addEventListener('click', () => {
+            expanded = !expanded;
+            textEl.innerHTML = expanded ? fullHtml : (truncatedHtml + '&hellip;');
+            toggleBtn.textContent = expanded ? 'Sembunyikan' : 'Selengkapnya';
+        });
+    }
 
     return card;
 }
