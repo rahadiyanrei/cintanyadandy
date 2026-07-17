@@ -43,6 +43,18 @@
     <style>
         .hidden { display: none !important; }
 
+        .rsvp-count {
+            text-align: center;
+            margin: 0 0 2rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            color: var(--gold, #D4AF37);
+            opacity: 0.9;
+        }
+        .rsvp-count strong {
+            font-weight: 700;
+        }
+
        
         .hero-bokeh-field { contain: layout paint; }
         .hero-bokeh {
@@ -449,7 +461,7 @@
                     <h3>First Brew &amp; First Stretch</h3>
 
                     <p>
-                        Sebuah pertemuan rutin tanpa isi dan lalu lalang biasa. Terpisahkan lantai gedung dan riuh pengunjung. Tak ada lirikan antar mata yang berpercikan. ucapan selamat pagi masih sebatas aturan pekerjaan. bertemu dan berbicara hanya sebatas transaksional. Tapi laki laki banyak akal ini tidak akan berhenti hanya dengan mengikuti sosial media. Profesi pun dijadikan alasan. cerita kondisi tubuh pun dibilang seperti meregang nyawa hanya untuk dapat atensinya. Dimulailah cerita aneh yang bahagia ini. tanpa tanggal tanpa awal dan tanpa akhir.
+                        Sebuah pertemuan rutin tanpa isi dan lalu lalang biasa. Terpisahkan lantai gedung dan riuh pengunjung. Tak ada lirikan antar mata yang berpercikan. Ucapan selamat pagi masih sebatas aturan pekerjaan. bertemu dan berbicara hanya sebatas transaksional. Tapi laki laki banyak akal ini tidak akan berhenti hanya dengan mengikuti sosial media. Profesi pun dijadikan alasan. cerita kondisi tubuh pun dibilang seperti meregang nyawa hanya untuk dapat atensinya. Dimulailah cerita aneh yang bahagia ini. tanpa tanggal tanpa awal dan tanpa akhir.
                     </p>
 
                     <div class="flower">
@@ -478,7 +490,7 @@
                     <h3>Finding Balance</h3>
 
                     <p>
-                        egelisahan wajar yang ditunggu akhirnya datang. sebuah pertanyaan "mau dibawa kemana" saling dilemparkan dan dibingungkan. jawaban yang mutlak tanpa ada follow up. sebuah rencana matang tapi tanpa uang. dipikir dengan masak masak tapi tidak pernah matang. sebuah pilihan sembrono kami pilih untuk pulang bertemu dengan bapak ibu di kampung halaman. laki laki gemetar ini pun memantapkan untuk deklarasi tekad dan membawa kedua orangtua bertemu.
+                        Kegelisahan wajar yang ditunggu akhirnya datang. sebuah pertanyaan "mau dibawa kemana" saling dilemparkan dan dibingungkan. Jawaban yang mutlak tanpa ada follow up. Sebuah rencana matang tapi tanpa uang. Dipikir dengan masak masak tapi tidak pernah matang. Sebuah pilihan sembrono kami pilih untuk pulang bertemu dengan bapak ibu di kampung halaman. Laki laki gemetar ini pun memantapkan untuk deklarasi tekad dan membawa kedua orangtua bertemu.
                     </p>
 
                     <div class="flower">
@@ -504,10 +516,10 @@
                     <span class="sparkle sparkle1">✦</span>
                     <span class="sparkle sparkle2">✧</span>
 
-                    <h3>Forever Blend</h3>
+                    <h3>Begining for The End</h3>
 
                     <p>
-                        Tawa, kecewa, marah, konyol, bahagia sudah dilalui meski dipermukaan. Tahun ini sudah waktunya bagi kami untuk menyelam. ujian sesungguhnya dari Tuhan bagi dua insan yang tidak peduli kemapanan untuk duduk di pelaminan. kuras habis semua tabungan, berganti-ganti pekerjaan, semua tidak apa. bagi kami ini hanyalah awalan untuk tujuan akhir maut yang memisahkan
+                        Tawa, kecewa, marah, konyol, bahagia sudah dilalui meski dipermukaan. Tahun ini sudah waktunya bagi kami untuk menyelam. Ujian sesungguhnya dari Tuhan bagi dua insan yang tidak peduli kemapanan untuk duduk di pelaminan. Kuras habis semua tabungan, berganti-ganti pekerjaan, semua tidak apa. Bagi kami ini hanyalah awalan untuk tujuan akhir maut yang memisahkan.
                     </p>
 
                     <div class="flower">
@@ -658,6 +670,7 @@
             <div class="container">
                 <h2 class="section-title reveal">Konfirmasi Kehadiran</h2>
                 <p class="section-subtitle reveal">Mohon konfirmasi kehadiran Anda sebelum tanggal 25 Juli 2026</p>
+                <p class="rsvp-count reveal" id="rsvpCount">Memuat data konfirmasi...</p>
                 
                 <form class="rsvp-form reveal" id="rsvpForm">
                     <div class="form-group">
@@ -770,6 +783,7 @@
     const rsvpForm = document.getElementById('rsvpForm');
     const wishesContainer = document.getElementById('wishesContainer');
     const btnSubmitRsvp = document.getElementById('btnSubmitRsvp');
+    const rsvpCountEl = document.getElementById('rsvpCount');
     const loadMoreWrap = document.getElementById('wishesLoadMoreWrap');
     const btnLoadMore = document.getElementById('btnLoadMoreWishes');
  
@@ -896,6 +910,27 @@
     function updateLoadMoreButton() {
         loadMoreWrap.style.display = hasMore ? 'flex' : 'none';
     }
+
+    // Menghitung total tamu yang sudah mengonfirmasi kehadiran (baik Hadir maupun Tidak Hadir)
+    async function loadRsvpCount() {
+        if (!rsvpCountEl) return;
+
+        try {
+            const { count, error } = await supabaseClient
+                .from('wishes')
+                .select('*', { count: 'exact', head: true });
+
+            if (error) throw error;
+
+            const total = count ?? 0;
+            rsvpCountEl.innerHTML = total > 0
+                ? `<strong>${total}</strong> orang telah mengonfirmasi kehadiran`
+                : 'Jadilah yang pertama mengonfirmasi kehadiran';
+        } catch (err) {
+            console.error('Error fetching RSVP count:', err.message);
+            rsvpCountEl.textContent = '';
+        }
+    }
  
     // reset=true -> fresh first page (used on initial load and after a new submission)
     async function loadWishes({ reset = false } = {}) {
@@ -997,6 +1032,7 @@
  
                 rsvpForm.reset();
                 await loadWishes({ reset: true }); // reload fresh first page so the new wish shows up
+                loadRsvpCount(); // refresh the confirmation counter
                 showWishPopup({
                     type: 'success',
                     title: 'Terima Kasih!',
@@ -1025,6 +1061,7 @@
  
     // Initial load
     loadWishes({ reset: true });
+    loadRsvpCount();
 })();
  
 document.addEventListener("DOMContentLoaded", function () {
