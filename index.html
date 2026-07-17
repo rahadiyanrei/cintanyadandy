@@ -925,8 +925,8 @@
 
             const total = count ?? 0;
             rsvpCountEl.innerHTML = total > 0
-                ? `<strong>${total}</strong> orang telah mengonfirmasi kehadiran`
-                : 'Jadilah yang pertama mengonfirmasi kehadiran';
+                ? `<strong>${total}</strong> orang telah mengkonfirmasi kehadiran`
+                : 'Jadilah yang pertama mengkonfirmasi kehadiran';
         } catch (err) {
             console.error('Error fetching RSVP count:', err.message);
             rsvpCountEl.textContent = '';
